@@ -10,5 +10,9 @@ public class EventsManager
     {
         this.events = events;
     }
-    
+
+    public Event GetEvent()
+    {
+        throw new System.NotImplementedException();
+    }
 }
