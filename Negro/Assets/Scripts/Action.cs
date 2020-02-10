@@ -14,4 +14,9 @@ public class Action
         this.consequences = consequences;
         this.statsModification = statsModification;
     }
+
+    public void Perform()
+    {
+        throw new System.NotImplementedException();
+    }
 }

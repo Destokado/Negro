@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    private Action chosenAction;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,17 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Draw(Event ev)
+    {
+    
+    //TODO: Put the information in the screen
+        throw new System.NotImplementedException();
+    }
+
+    public Action GetChosenAction()
+    {
+        return chosenAction;
     }
 }
