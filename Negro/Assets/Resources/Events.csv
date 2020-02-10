@@ -1,11 +1,10 @@
-Id,Text,Localització,Requeriments,Salut,Seny,Comunitat,Estatus,Acció,Conseqüències de l'acció,Salut,Seny,Comunitat,Estatus,Acció,Conseqüències,Salut,Seny,Comunitat,Estatus,Acció,Conseqüències,Salut,Seny,Comunitat,Estatus,Acció,Conseqüències,Salut,Seny,Comunitat,Estatus
-1,La comunitat vol cremar les cases,,revolta,1,1,1,1,Calmar a la gent,!revolta,-1,-100,6,,,,,,,,,,,,,,,,,,,
-2,La gent et demana ajuda per XXX,,!revuelta,1,2,10,1,Animarlos a agafar armes,revolta,,,,,,,,,,,,,,,,,,,,,,
-3,,,AcaH1,,,,,,"AcaH2, !AcaH1",,,,,,,,,,,,,,,,,,,,,,
-4,,,AcaH2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,  ,,,,,,,,,,,,,,,,,,,,,
+Id,Text,Localització,Requeriments,Salud,Cordura,Estatus,Acción,Conseqüències de l'acció,Salut,Cordura,Estatus,Acció,Conseqüències,Salut,Cordura,Estatus,Acció,Conseqüències,Salut,Cordura,Estatus,Acció,Conseqüències,Salut,Cordura,Estatus
+1,La comunidad quiere quemar las casas,,,,,,Calmar a la gente,,-1,-25,0,Unirte a la revuelta,,0,0,-35,,,,,,,,,,
+2,La gente te pide ayuda para XXX,,,,,,Animarlos a coger armas,,,,,,,,,,,,,,,,,,,
+3,Un compañero te pide compartir la comida,,,,,,Compartir,,-10,0,0,Negarte,,10,-5,-10,Dar toda tu comida,,-25,0,-15,,,,,
+4,El amo te pide castigar a un esclavo,,,,,,Castigar,,0,-4,20,No castigar,,0,15,-30,,,,,,,,,,
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26
+,El amo te pide revelar la ubicación de una niña que ha robado comida,,,,,,Mentir,,-10,5,15,Decir la verdad,,10,-15,30,Suplicar por la niña,,0,0,-30,Autoinculparse,,-15,-15,-40
+,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,  ,,,,,,,,,,,,,,,,,

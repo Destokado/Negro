@@ -25,7 +25,7 @@ public class Event
 
     public override string ToString()
     {
-        return "Action " + id + ": " + text;
+        return "Event '" + id + "': " + text + "\n" + location + ", " + requirements;
     }
 
     public override bool Equals(object obj)
@@ -51,6 +51,6 @@ public class Event
 
     public override int GetHashCode()
     {
-        return (id != null ? id.GetHashCode() : 0);
+        return id.GetHashCode();
     }
 }

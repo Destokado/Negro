@@ -12,6 +12,5 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         eventsManager = new EventsManager(EventFactory.BuildEvents(eventsCsv.downloadedFileName));
-        
     }
 }
