@@ -1,0 +1,10 @@
+To import Google Sheets into your game:
+
+In your Google Sheets, go to: File > Publish to the Web > Link > CSV
+You'll be given a link. Put that link into the "url" field in a "CsvOnlineSource" object in the project structure.
+
+// Example URL
+//string url = @"https://docs.google.com/spreadsheets/d/e/2PACX-1vQGs31fwKF9vuUg9uUOvgN8Jr7bVSQvDILQEMPk6xiKkzk3PDYosuOPMhd0FjrnKPzLkMA998tnZfGN/pub?output=csv"; //Published to the web
+
+
+Then, using the CsvDownloader and CsvReader class you can easily download and use it in your game as an array of strings.

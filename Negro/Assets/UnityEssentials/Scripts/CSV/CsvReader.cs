@@ -10,52 +10,17 @@ public class CsvReader
     private const string LINE_SPLIT_RE = @"\r\n|\n\r|\n|\r";
     //private static char[] TRIM_CHARS = { '\"' };
 
-    public static List<Dictionary<string, string>> ReadWithHeaders(string fileName)
+    public static List<string[]> ReadAsList(string pathFromResourcesFolder)
     {
-        List<Dictionary<string, string>> table = new List<Dictionary<string, string>>();
-        TextAsset csvFile = Resources.Load(fileName) as TextAsset;
-
-        if (csvFile == null) return table;
-        
-        string[] lines = Regex.Split(csvFile.text, LINE_SPLIT_RE);
-
-        if (lines.Length <= 1) return table;
-
-        string[] headers = Regex.Split(lines[0], SPLIT_RE);
-
-        for (int i = 1; i < lines.Length; i++)
+        if (string.IsNullOrEmpty(pathFromResourcesFolder))
         {
-            string[] values = Regex.Split(lines[i], SPLIT_RE);
-            if (values.Length == 0 || values[0] == "") continue;
-
-            Dictionary<string, string> rowInTable = new Dictionary<string, string>();
-            for (int j = 0; j < headers.Length && j < values.Length; j++)
-            {
-                //Clean value
-                string value = values[j].Replace("\"\"", "\"");
-                value = UnquoteString(value);
-                value = value.Replace("\\", "");
-                string finalValue = value;
-
-                rowInTable[headers[j]] = finalValue;
-            }
-            table.Add(rowInTable);
-        }
-
-        return table;
-    }
-
-    public static List<string[]> Read(LocalizationFile localizationFile)
-    {
-        if (localizationFile == null)
-        {
-            Debug.LogError("Trying to read a 'null' localizationFile");
+            Debug.LogError("Trying to read a 'null' CsvOnlineSource");
             return null;
         }
 
         List<string[]> table = new List<string[]>();
 
-        TextAsset csvFile = Resources.Load(localizationFile.ToString()) as TextAsset;
+        TextAsset csvFile = Resources.Load(pathFromResourcesFolder) as TextAsset;
 
         if (csvFile == null) return table;
         
@@ -97,6 +62,27 @@ public class CsvReader
             str = str.Substring(1, length - 2);
 
         return str;
+    }
+    
+    public static string[,] ReadAsArray(string pathFromResourcesFolder)
+    {
+        if (string.IsNullOrEmpty(pathFromResourcesFolder))
+        {
+            Debug.LogError("Trying to read a 'null' CsvOnlineSource");
+            return null;
+        }
+
+        List<string[]> lines = ReadAsList(pathFromResourcesFolder);
+        int rows = lines.Count;
+        int columns = lines[0].Length;
+        
+        string[,] table = new string[rows,columns];
+
+        for (int row = 0; row < rows; row++)
+            for (int col = 0; col < columns; col++)
+                table[row, col] = lines[row][col];
+
+        return table;
     }
 
 

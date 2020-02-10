@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Action : MonoBehaviour
+public class Action
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private string text;
+    private List<string> consequences;
+    private Stats statsModification;
 
-    // Update is called once per frame
-    void Update()
+    public Action(string text, List<string> consequences, Stats statsModification)
     {
-        
+        this.text = text;
+        this.consequences = consequences;
+        this.statsModification = statsModification;
     }
 }

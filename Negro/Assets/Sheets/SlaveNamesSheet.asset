@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b50d49078e55e014a91673ac0c31cd3e, type: 3}
+  m_Name: SlaveNamesSheet
+  m_EditorClassIdentifier: 
+  _downloadedFileName: SlaveNames
+  url: https://docs.google.com/spreadsheets/d/e/2PACX-1vS3gnpadAH-GlHMJomy2jNqD4Qm-Z8OoIFAZyjcRmUEUoluKGdi5NBMOtw2xzW4O7fIQsmF9JSp3-xT/pub?gid=1110145952&single=true&output=csv
