@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
     {
     
     //TODO: Put the information in the screen
-        throw new System.NotImplementedException();
+
     }
 
     public Action GetChosenAction()

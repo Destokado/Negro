@@ -17,6 +17,6 @@ public class Action
 
     public void Perform()
     {
-        throw new System.NotImplementedException();
+        GameManager.Instance.ApplyActionToGame(this);
     }
 }

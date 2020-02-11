@@ -19,6 +19,9 @@ public static class GameStateFactory
    
    private static GameState BuildGameState(string gameStateInProperTextFormat)
    {
+      if (string.IsNullOrEmpty(gameStateInProperTextFormat))
+         return null;
+      
       if (gameStateInProperTextFormat[0] != '!') 
          return new GameState(gameStateInProperTextFormat, true);
       

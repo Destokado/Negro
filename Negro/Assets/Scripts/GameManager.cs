@@ -6,14 +6,22 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private CsvOnlineSource eventsCsv;
-
+    [SerializeField] private UIManager UiManager;
     private EventsManager eventsManager;
-    private UIManager UiManager;
+
+    public static GameManager Instance;
+    private void Awake()
+    {
+        if (Instance != null)
+            Debug.LogError("More than one GameObject has been created: " + Instance.name + " and " + gameObject.name,
+                this);
+        else
+            Instance = this;
+    }
 
     private void Start()
     {
         eventsManager = new EventsManager(EventFactory.BuildEvents(eventsCsv.downloadedFileName));
-        UiManager = new UIManager();
         GameLoop();
     }
 
@@ -22,17 +30,18 @@ public class GameManager : MonoBehaviour
 
     private void GameLoop()
     {
-        ev = eventsManager.GetEvent();
-        UiManager.Draw(ev);
-        //Wait for user Action
-        action = UiManager.GetChosenAction();
-        action.Perform();
-        //Check if the game should end
-        if (!IsEndGame()) GameLoop();
-        else
+        if (IsEndGame())
         {
             EndGame();
+            return;
         }
+        ev = eventsManager.GetEvent();
+        UiManager.Draw(ev);
+    }
+
+    public void ApplyActionToGame(Action action)
+    {
+        throw new NotImplementedException();
     }
 
     private void EndGame()
@@ -42,6 +51,8 @@ public class GameManager : MonoBehaviour
 
     private bool IsEndGame()
     {
+        // TODO
+        return false;
         throw new NotImplementedException();
     }
 }

@@ -26,7 +26,7 @@ public static class EventFactory
         string text = eventInTextFormat[1];
         string location = eventInTextFormat[2];
         HashSet<GameState> requirements = GameStateFactory.BuildGameStates(eventInTextFormat[3]);
-        Stats statsProbabilityIncrement = new Stats(ConvertToInt(eventInTextFormat[4]), ConvertToInt(eventInTextFormat[5]), ConvertToInt(eventInTextFormat[6]));
+        Stats statsProbabilityIncrement = new Stats(ConvertToInt(eventInTextFormat[4], -1), ConvertToInt(eventInTextFormat[5], -1), ConvertToInt(eventInTextFormat[6], -1));
         
         List<Action> actions = new List<Action>(); 
         for (int a = 0; a < 4; a++)
