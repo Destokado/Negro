@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
 
     public void ApplyActionToGame(Action action)
     {
+        GameLoop();
         throw new NotImplementedException();
     }
 
@@ -53,6 +54,5 @@ public class GameManager : MonoBehaviour
     {
         // TODO
         return false;
-        throw new NotImplementedException();
     }
 }

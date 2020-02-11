@@ -20,4 +20,9 @@ public class Action
     {
         GameManager.Instance.ApplyActionToGame(this);
     }
+
+    public bool IsValidAction()
+    {
+        return !(string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text));
+    }
 }

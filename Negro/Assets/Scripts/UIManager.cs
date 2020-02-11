@@ -22,16 +22,13 @@ public class UIManager : MonoBehaviour
     }
 
     public void Draw(Event ev)
-    { 
+    {
         for (var i = 0; i < actionButtons.Length; i++)
-            try
-            {
-                actionButtons[i].SetUp(ev.Actions[i]);
-            }
-            catch (NullReferenceException)
-            {
-                actionButtons[i].SetUp(null);
-            }
+        {
+            actionButtons[i].gameObject.SetActive(ev.Actions[i].IsValidAction());
+            actionButtons[i].SetUp(ev.Actions[i]);
+        }
+
             
     }
 
