@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class Event
 {
-    private int id;
-    private string text;
-    private string location;
-    private List<string> requirements;
-    private Stats statsProbabilityIncrement;
-    private List<Action> actions = new List<Action>();
+    private readonly int id;
+    private readonly string text;
+    private readonly string location;
+    private readonly HashSet<GameState> requirements;
+    private readonly Stats statsProbabilityIncrement;
+    private readonly List<Action> actions;
 
 
-    public Event(int id, string text, string location, List<string> requirements, Stats statsProbabilityIncrement, List<Action> actions)
+    public Event(int id, string text, string location, HashSet<GameState> requirements, Stats statsProbabilityIncrement, List<Action> actions)
     {
         this.id = id;
         this.text = text;
@@ -41,7 +41,7 @@ public class Event
             return false;
         }
 
-        return id == eventToCompareWith.id;
+        return eventToCompareWith != null && id == eventToCompareWith.id;
     }
 
     protected bool Equals(Event other)
@@ -51,6 +51,6 @@ public class Event
 
     public override int GetHashCode()
     {
-        return id.GetHashCode();
+        return id;
     }
 }

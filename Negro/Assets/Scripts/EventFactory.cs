@@ -25,14 +25,14 @@ public static class EventFactory
         int id = ConvertToInt(eventInTextFormat[0]);
         string text = eventInTextFormat[1];
         string location = eventInTextFormat[2];
-        List<string> requirements = new List<string>(); //TODO: Future addition: record the requirements of the event
+        HashSet<GameState> requirements = GameStateFactory.BuildGameStates(eventInTextFormat[3]);
         Stats statsProbabilityIncrement = new Stats(ConvertToInt(eventInTextFormat[4]), ConvertToInt(eventInTextFormat[5]), ConvertToInt(eventInTextFormat[6]));
         
         List<Action> actions = new List<Action>(); 
         for (int a = 0; a < 4; a++)
         {
             string actionText = eventInTextFormat[7 + a * 5];
-            List<string> actionConsequences = new List<string>(); //TODO: Future addition: record the consequences of this action
+            HashSet<GameState> actionConsequences = GameStateFactory.BuildGameStates(eventInTextFormat[8 + a * 5]);
             Stats actionStatsModifications = new Stats(ConvertToInt(eventInTextFormat[9 + a * 5]),
                 ConvertToInt(eventInTextFormat[10 + a * 5]), ConvertToInt(eventInTextFormat[11 + a * 5]));
             actions.Add(new Action(actionText, actionConsequences, actionStatsModifications));
