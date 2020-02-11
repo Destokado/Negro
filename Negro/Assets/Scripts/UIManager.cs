@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     private Action chosenAction;
+    [SerializeField] private  ActionButton [] actionButtons;
 
     // Start is called before the first frame update
     void Start()
@@ -19,10 +22,10 @@ public class UIManager : MonoBehaviour
     }
 
     public void Draw(Event ev)
-    {
-    
-    //TODO: Put the information in the screen
-        throw new System.NotImplementedException();
+    { 
+        //TODO: Put the information in the screen
+        for (var i = 0; i < actionButtons.Length; i++)
+            actionButtons[i].SetUp(ev.Actions[i]);
     }
 
     public Action GetChosenAction()

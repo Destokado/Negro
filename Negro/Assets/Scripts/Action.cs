@@ -5,6 +5,9 @@ using UnityEngine;
 public class Action
 {
     private string text;
+
+    public string Text => text;
+
     private List<string> consequences;
     private Stats statsModification;
 

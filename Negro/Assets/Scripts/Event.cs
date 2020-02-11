@@ -12,6 +12,7 @@ public class Event
     private Stats statsProbabilityIncrement;
     private List<Action> actions = new List<Action>();
 
+    public List<Action> Actions => actions;
 
     public Event(int id, string text, string location, List<string> requirements, Stats statsProbabilityIncrement, List<Action> actions)
     {
