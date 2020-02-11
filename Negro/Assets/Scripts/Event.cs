@@ -12,6 +12,7 @@ public class Event
     private readonly Stats statsProbabilityIncrement;
     private readonly List<Action> actions;
 
+    public List<Action> Actions => actions;
 
     public Event(int id, string text, string location, HashSet<GameState> requirements, Stats statsProbabilityIncrement, List<Action> actions)
     {

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Action
 {
-    private string text;
     private HashSet<GameState> consequences;
+
+    public readonly string text;
     private Stats statsModification;
 
     public Action(string text, HashSet<GameState> consequences, Stats statsModification)
