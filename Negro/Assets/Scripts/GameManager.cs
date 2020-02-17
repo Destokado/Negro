@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     
     public EventsManager eventsManager;
     public HashSet<GameState> gameState = new HashSet<GameState>();
-    public Stats stats = new Stats();
+    public Stats stats = new Stats(100,100,0);
     private void Awake()
     {
         if (Instance != null)
