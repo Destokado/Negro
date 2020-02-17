@@ -27,9 +27,5 @@ public class UIManager : MonoBehaviour
         
         videoStatsController.UpdateVideos();
     }
-
-    public Action GetChosenAction()
-    {
-        return chosenAction;
-    }
+    
 }

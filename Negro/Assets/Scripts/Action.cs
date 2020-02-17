@@ -5,9 +5,9 @@ using UnityEngine;
 public class Action
 {
     private HashSet<GameState> consequences;
-
     public readonly string text;
     private Stats statsModification;
+
 
     public Action(string text, HashSet<GameState> consequences, Stats statsModification)
     {
@@ -18,7 +18,7 @@ public class Action
 
     public void Perform()
     {
-        GameManager.Instance.ApplyActionToGame(this);
+        GameManager.Instance.ApplyActionToGame(statsModification, consequences);
     }
 
     public bool IsValidAction()

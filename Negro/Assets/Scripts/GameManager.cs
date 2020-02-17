@@ -7,9 +7,11 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private CsvOnlineSource eventsCsv;
     [SerializeField] private UIManager UiManager;
-    private EventsManager eventsManager;
-
     public static GameManager Instance;
+    
+    public EventsManager eventsManager;
+    public HashSet<GameState> gameState;
+    public Stats stats;
     private void Awake()
     {
         if (Instance != null)
@@ -25,9 +27,7 @@ public class GameManager : MonoBehaviour
         GameLoop();
     }
 
-    private Event ev;
-    Action action;
-
+    private Event currentEvent;
     private void GameLoop()
     {
         if (IsEndGame())
@@ -35,14 +35,15 @@ public class GameManager : MonoBehaviour
             EndGame();
             return;
         }
-        ev = eventsManager.GetEvent();
-        UiManager.Draw(ev);
+        currentEvent = eventsManager.GetEvent();
+        UiManager.Draw(currentEvent);
     }
 
-    public void ApplyActionToGame(Action action)
+    public void ApplyActionToGame(Stats aStats,HashSet<GameState> aGameState)
     {
+        gameState.UnionWith(aGameState);
+        stats.ComputeStats(aStats);
         GameLoop();
-        throw new NotImplementedException();
     }
 
     private void EndGame()

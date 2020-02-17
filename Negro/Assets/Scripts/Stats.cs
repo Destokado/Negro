@@ -15,7 +15,7 @@ public class Stats
         this.socialStatus = socialStatus;
     }
 
-    public void ApplyEffectOf(Stats modifications)
+    public void ComputeStats(Stats modifications)
     {
         health += modifications.health;
         mentalIllness += modifications.mentalIllness;
