@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     
     public EventsManager eventsManager;
-    public HashSet<GameState> gameState;
-    public Stats stats;
+    public HashSet<GameState> gameState = new HashSet<GameState>();
+    public Stats stats = new Stats();
     private void Awake()
     {
         if (Instance != null)
@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     private Event currentEvent;
     private void GameLoop()
     {
+        Debug.Log(stats.ToString());
         if (IsEndGame())
         {
             EndGame();
@@ -41,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     public void ApplyActionToGame(Stats aStats,HashSet<GameState> aGameState)
     {
-        gameState.UnionWith(aGameState);
+       /* if(aGameState.Count >0)*/ gameState.UnionWith(aGameState);
         stats.ComputeStats(aStats);
         GameLoop();
     }
