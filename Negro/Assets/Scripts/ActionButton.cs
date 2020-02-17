@@ -1,17 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ActionButton : MonoBehaviour
 {
-    [SerializeField] private Text text;
+    [SerializeField] private TextMeshProUGUI tmProGui;
     private Action currentAction;
 
     public void SetUp(Action action)
     {
         currentAction = action.IsValidAction()? action : null;
-        text.text = action.IsValidAction()? action.text : "";
+        tmProGui.text = action.IsValidAction()? action.text : "";
     }
 
     public void Perform()
