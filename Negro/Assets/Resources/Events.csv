@@ -1,10 +1,10 @@
 Id,Text,Art,Requeriments,Salud,Cordura,Estatus,Acción,Conseqüències de l'acció,Salut,Cordura,Estatus,Acció,Conseqüències,Salut,Cordura,Estatus,Acció,Conseqüències,Salut,Cordura,Estatus,Acció,Conseqüències,Salut,Cordura,Estatus
-1,La comunidad quiere quemar las casas,Casas,"revolución, !riqueza",3,,2,Calmar a la gente,,-1,-25,0,Unirte a la revuelta,,0,0,-35,,,,,,,,,,
-2,La gente te pide ayuda para XXX,,,,,,Animarlos a coger armas,revolución,,,,,,,,,,,,,,,,,,
-3,Un compañero te pide compartir la comida,,,,,,Compartir,,-10,0,0,Negarte,,10,-5,-10,Dar toda tu comida,,-25,0,-15,,,,,
-4,El amo te pide castigar a un esclavo,,pan,,5,,Castigar,riqueza,0,-4,20,No castigar,,0,15,-30,,,,,,,,,,
-5,El amo te pide revelar la ubicación de una niña que ha robado comida,,,,,,Mentir,!riqueza,-10,5,15,Decir la verdad,,10,-15,30,Suplicar por la niña,,0,0,-30,Autoinculparse,,-15,-15,-40
-6,El capataz te pide doblar tus horas,,,,,,Dummy,,,,,,,,,,,,,,,,,,,
-7,el capataz te pide trabajar de noche,,,,,,Dummy,,,,,,,,,,,,,,,,,,,
-8,Encuentras un cordero muerto,,,,,,Dummy,,  ,,,,,,,,,,,,,,,,,
-9,Encuentras comida detras de la casa del amo,,,,,,Cogerla,,,,,,,,,,,,,,,,,,,
+1,La comunidad quiere quemar las casas,campo algodon,"revolución, !riqueza",3,,2,Calmar a la gente,,-1,-25,0,Unirte a la revuelta,,0,0,-35,,,,,,,,,,
+2,La gente te pide ayuda para XXX,campo algodon,,,,,Animarlos a coger armas,revolución,,,,,,,,,,,,,,,,,,
+3,Un compañero te pide compartir la comida,casas esclavos,,,,,Compartir,,-10,0,0,Negarte,,10,-5,-10,Dar toda tu comida,,-25,0,-15,,,,,
+4,El amo te pide castigar a un esclavo,casas esclavos,pan,,5,,Castigar,riqueza,0,-4,20,No castigar,,0,15,-30,,,,,,,,,,
+5,El amo te pide revelar la ubicación de una niña que ha robado comida,casas esclavos,,,,,Mentir,!riqueza,-10,5,15,Decir la verdad,,10,-15,30,Suplicar por la niña,,0,0,-30,Autoinculparse,,-15,-15,-40
+6,El capataz te pide doblar tus horas,ejemplo estilo,,,,,Dummy,,,,,,,,,,,,,,,,,,,
+7,el capataz te pide trabajar de noche,ejemplo estilo,,,,,Dummy,,,,,,,,,,,,,,,,,,,
+8,Encuentras un cordero muerto,ejemplo estilo,,,,,Dummy,,  ,,,,,,,,,,,,,,,,,
+9,Encuentras comida detras de la casa del amo,campo algodon,,,,,Cogerla,,,,,,,,,,,,,,,,,,,

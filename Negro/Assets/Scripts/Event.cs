@@ -5,14 +5,12 @@ using UnityEngine;
 
 public class Event
 {
-    private readonly int id;
-    private readonly string text;
-    private readonly string location;
-    private readonly HashSet<GameState> requirements;
-    private readonly Stats statsProbabilityIncrement;
-    private readonly List<Action> actions;
-
-    public List<Action> Actions => actions;
+    public readonly int id;
+    public readonly string text;
+    public readonly string location;
+    public readonly HashSet<GameState> requirements;
+    public readonly Stats statsProbabilityIncrement;
+    public readonly List<Action> actions;
 
     public Event(int id, string text, string location, HashSet<GameState> requirements, Stats statsProbabilityIncrement, List<Action> actions)
     {
