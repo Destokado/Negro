@@ -6,17 +6,21 @@ using UnityEngine;
 public class EventsManager
 {
     private HashSet<Event> events;
-    private GameStateManager gameStateManager;
 
     public EventsManager(HashSet<Event> events)
     {
         this.events = events;
-        gameStateManager = new GameStateManager();
     }
 
-    public Event GetEvent()
+    public Event GetEventFor(GameStateManager gameState)
     {
         RandomPro rnd = new RandomPro();
-        return events.ToArray()[rnd.GetRandomInt(events.Count)];
+        Event[] RandomSortedEvents = events.ToArray().OrderBy(x => rnd.Next()).ToArray();
+
+        foreach (Event ev in RandomSortedEvents)
+            if (gameState.AreGameStatesCorrectFor(ev))
+                return ev;
+
+        return null;
     }
 }

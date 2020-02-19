@@ -5,13 +5,20 @@ using UnityEngine;
 
 public class GameState
 {
-    public readonly bool exists;
-    private readonly string name;
+    public enum Type
+    {
+        Exists,
+        NotExists,
+        ForceEvent
+    }
+    
+    public readonly Type type;
+    public readonly string name;
 
-    public GameState(string name, bool exists = true)
+    public GameState(string name, Type type)
     {
         this.name = name;
-        this.exists = exists;
+        this.type = type;
     }
 
     public override bool Equals(object obj)
@@ -38,5 +45,25 @@ public class GameState
     public override int GetHashCode()
     {
         return (name != null ? name.GetHashCode() : 0);
+    }
+
+    public override string ToString()
+    {
+        string type = "";
+        switch (this.type)
+        {
+            case Type.Exists:
+                type = "";
+                break;
+            case Type.NotExists:
+                type = "!";
+                break;
+            case Type.ForceEvent:
+                type = "_";
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+        return type + this.name;
     }
 }

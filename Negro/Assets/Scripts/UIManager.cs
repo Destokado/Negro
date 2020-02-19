@@ -13,16 +13,20 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image eventBackground;
     [SerializeField] private TextMeshProUGUI eventText;
 
-    public void Draw(Event ev)
+    public void DrawEvent(Event ev)
     {
         for (int i = 0; i < actionButtons.Length; i++)
         {
-            actionButtons[i].gameObject.SetActive(ev.actions[i].IsValidAction());
+            actionButtons[i].gameObject.SetActive(ev.actions[i].CanActionBeShownInGame());
             actionButtons[i].SetUp(ev.actions[i]);
         }
         
-        eventBackground.sprite = Resources.Load<Sprite>(ev.location);
+        eventBackground.sprite = Resources.Load<Sprite>(ev.art);
         eventText.text = ev.text;
     }
-    
+
+    public void ShowConsequencesOf(Stats statsModification, Stats resultGameStats)
+    {
+        // TODO
+    }
 }

@@ -1,51 +1,125 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameStateManager
 {
 
-    private HashSet<GameState> currentGameStates;
+    public HashSet<GameState> gameStates { get; private set; }
 
-    public void ProcessEvents(HashSet<GameState> gameStatesToProcess)
+    public GameStateManager(HashSet<GameState> gameStates)
+    {
+        this.gameStates = gameStates;
+    }
+
+    
+    
+    public void Campute(GameStateManager newConsequences)
     {
         List<GameState> gsToAdd = new List<GameState>();
         List<GameState> gsToRemove = new List<GameState>();
 
-        foreach (GameState gsToProcess in gameStatesToProcess)
-            if (!gsToProcess.exists)
+        foreach (GameState newConsequence in newConsequences.gameStates)
+            if (newConsequence.type == GameState.Type.NotExists)
             {
-                if (currentGameStates.Contains(gsToProcess))
-                    gsToRemove.Add(gsToProcess);
+                if (gameStates.Contains(newConsequence))
+                    gsToRemove.Add(newConsequence);
             }
-            else
+            else if (newConsequence.type == GameState.Type.Exists || newConsequence.type == GameState.Type.ForceEvent)
             {
-                if (!currentGameStates.Contains(gsToProcess))
-                    gsToAdd.Add(gsToProcess);
+                if (!gameStates.Contains(newConsequence))
+                    gsToAdd.Add(newConsequence);
             }
 
         foreach (GameState gs in gsToAdd)
-            currentGameStates.Add(gs);
+            gameStates.Add(gs);
         
         foreach (GameState gs in gsToRemove)
-            currentGameStates.Remove(gs);
+            gameStates.Remove(gs);
+
+        gameStates.Remove(null);
     }
 
-    public bool IsCurrentGameStateCorrectFor(HashSet<GameState> gsToCheckAgainst)
+    
+    
+    
+    public bool AreGameStatesCorrectFor(Event @event)
     {
-        foreach (GameState gsToProcess in gsToCheckAgainst)
-            if (!gsToProcess.exists)
-            {
-                if (currentGameStates.Contains(gsToProcess))
-                    return false;
-            }
+        if (@event.requirements.ExistsForcedGameStateFor(@event.id.ToString()))
+        {
+            if (!gameStates.Contains(new GameState(@event.id.ToString(), GameState.Type.ForceEvent)))
+                return false;
             else
+                return true;
+        }
+        else
+        {
+            foreach (GameState gs in gameStates)
             {
-                if (!currentGameStates.Contains(gsToProcess))
-                    return false;
+                if (gs.type == GameState.Type.ForceEvent)
+                {
+                    if (String.Compare(@event.id.ToString(), gs.name, StringComparison.OrdinalIgnoreCase) == 0)
+                        return true;
+                    else
+                        return false;
+                }
             }
+        
+            foreach (GameState requirement in @event.requirements.gameStates)
+            {
+                if (requirement.type == GameState.Type.Exists)
+                {
+                    if (!gameStates.Contains(requirement))
+                        return false;
+                }
+                else if (requirement.type == GameState.Type.NotExists)
+                {
+                    if (gameStates.Contains(requirement))
+                        return false;
+                }
+            }
+        }
+        
+        return true;
+    }
+
+    private bool ExistsForcedGameStateFor(string gameStateName)
+    {
+        GameState searchingGs = new GameState(gameStateName, GameState.Type.ForceEvent);
+        foreach (GameState gs in gameStates)
+        {
+            if (gs.Equals(searchingGs))
+                if (gs.type == GameState.Type.ForceEvent)
+                    return true;
+        }
 
         return false;
     }
-    
+
+    public override string ToString()
+    {
+        string forcedEvents = "";
+        string currentGameState = "";
+        
+        foreach (GameState gs in gameStates)
+            if (gs.type == GameState.Type.ForceEvent)
+                forcedEvents += gs.ToString() + ", ";
+            else
+                currentGameState += gs.ToString() + ", ";
+
+
+        string finalReport = "";
+        if (!string.IsNullOrEmpty(forcedEvents))
+            finalReport += "Forced events: " + forcedEvents + ". ";
+        if (!string.IsNullOrEmpty(currentGameState))
+            finalReport += "Game states: " + currentGameState;
+
+        return finalReport;
+    }
+
+    public void RemoveEventFromListOfForcedEvents(Event @event)
+    {
+        gameStates.Remove(new GameState(@event.id.ToString(), GameState.Type.ForceEvent));
+    }
 }

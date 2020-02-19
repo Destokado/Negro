@@ -15,7 +15,7 @@ public class Stats
         this.socialStatus = socialStatus;
     }
 
-    public void ComputeStats(Stats modifications)
+    public void Compute(Stats modifications)
     {
         health += modifications.health;
         sanity += modifications.sanity;
@@ -24,7 +24,7 @@ public class Stats
 
     public override string ToString()
     {
-         return "Health: "+health+"\n Sanity: "+sanity+"\n Status: "+socialStatus;
+         return "Health: "+health+" | Sanity: "+sanity+" | Status: "+socialStatus;
         
     }
 }

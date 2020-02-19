@@ -10,8 +10,8 @@ public class ActionButton : MonoBehaviour
 
     public void SetUp(Action action)
     {
-        currentAction = action.IsValidAction()? action : null;
-        tmProGui.text = action.IsValidAction()? action.text : "";
+        currentAction = action.CanActionBeShownInGame()? action : null;
+        tmProGui.text = action.CanActionBeShownInGame()? action.text : "";
     }
 
     public void Perform()

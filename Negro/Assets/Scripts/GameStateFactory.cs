@@ -22,11 +22,13 @@ public static class GameStateFactory
       if (string.IsNullOrEmpty(gameStateInProperTextFormat))
          return null;
       
-      if (gameStateInProperTextFormat[0] != '!') 
-         return new GameState(gameStateInProperTextFormat, true);
+      if (gameStateInProperTextFormat[0] == '_')
+         return new GameState(gameStateInProperTextFormat.Substring(1), GameState.Type.ForceEvent);
       
-      string gsName = gameStateInProperTextFormat.Substring(1);  
-      return new GameState(gsName, false);
+      if (gameStateInProperTextFormat[0] == '!')
+         return new GameState(gameStateInProperTextFormat.Substring(1), GameState.Type.NotExists);
+      
+      return new GameState(gameStateInProperTextFormat, GameState.Type.Exists);
    }
 
    private static List<string> SeparateGameStatesFromText(string gameStatesInTextFormat)

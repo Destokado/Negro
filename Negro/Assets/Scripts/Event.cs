@@ -7,24 +7,25 @@ public class Event
 {
     public readonly int id;
     public readonly string text;
-    public readonly string location;
-    public readonly HashSet<GameState> requirements;
-    public readonly Stats statsProbabilityIncrement;
+    public readonly string art;
+    public readonly GameStateManager requirements;
+    public readonly Stats statsProbabilityIncrement; // TODO: Implement when choosing events randomly
     public readonly List<Action> actions;
 
-    public Event(int id, string text, string location, HashSet<GameState> requirements, Stats statsProbabilityIncrement, List<Action> actions)
+    public Event(int id, string text, string art, HashSet<GameState> requirements, Stats statsProbabilityIncrement, List<Action> actions)
     {
         this.id = id;
         this.text = text;
-        this.location = location;
-        this.requirements = requirements;
+        this.art = art;
+        this.requirements = new GameStateManager(requirements);
+        requirements.Remove(null);
         this.statsProbabilityIncrement = statsProbabilityIncrement;
         this.actions = actions;
     }
 
     public override string ToString()
     {
-        return "Event '" + id + "': " + text + "\n" + location + ", " + requirements;
+        return "ID: '" + id + "'. Text: '" + text + "'\n Art: '" + art + "'. Requirements: " + requirements.ToString();
     }
 
     public override bool Equals(object obj)
