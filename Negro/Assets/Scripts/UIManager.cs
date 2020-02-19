@@ -9,7 +9,6 @@ public class UIManager : MonoBehaviour
 {
     private Action chosenAction;
     [SerializeField] private  ActionButton [] actionButtons;
-    [SerializeField] private VideoStatsController videoStatsController;
     
     [SerializeField] private Image eventBackground;
     [SerializeField] private TextMeshProUGUI eventText;
@@ -24,8 +23,6 @@ public class UIManager : MonoBehaviour
         
         eventBackground.sprite = Resources.Load<Sprite>(ev.location);
         eventText.text = ev.text;
-        
-        videoStatsController.UpdateVideos();
     }
     
 }
