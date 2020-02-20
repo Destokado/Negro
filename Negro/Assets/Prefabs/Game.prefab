@@ -385,6 +385,8 @@ MonoBehaviour:
   eventBackground: {fileID: 304761532982490018}
   eventText: {fileID: 1254705244373107710}
   blackPanel: {fileID: 6363386041854909985}
+  videoController: {fileID: 6383998524673805226}
+  thresholdToShowEffectVideos: 10
 --- !u!114 &4866472157356770857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -640,7 +642,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4801856490269803411
 RectTransform:
   m_ObjectHideFlags: 0
@@ -682,7 +684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -737,6 +739,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ba0ee8d944b626438fedd0785448298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthVideos: []
+  sanityVideos: []
+  socialStatusVideos: []
 --- !u!1001 &2080381946
 PrefabInstance:
   m_ObjectHideFlags: 0

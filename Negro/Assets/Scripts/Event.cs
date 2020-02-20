@@ -9,17 +9,17 @@ public class Event
     public readonly string text;
     public readonly string art;
     public readonly GameStateManager requirements;
-    public readonly Stats statsProbabilityIncrement; // TODO: Implement when choosing events randomly
+    public readonly Statistics StatisticsProbabilityIncrement; // TODO: Implement when choosing events randomly
     public readonly List<Action> actions;
 
-    public Event(int id, string text, string art, HashSet<GameState> requirements, Stats statsProbabilityIncrement, List<Action> actions)
+    public Event(int id, string text, string art, HashSet<GameState> requirements, Statistics statisticsProbabilityIncrement, List<Action> actions)
     {
         this.id = id;
         this.text = text;
         this.art = art;
         this.requirements = new GameStateManager(requirements);
         requirements.Remove(null);
-        this.statsProbabilityIncrement = statsProbabilityIncrement;
+        this.StatisticsProbabilityIncrement = statisticsProbabilityIncrement;
         this.actions = actions;
     }
 

@@ -6,15 +6,15 @@ public class Action
 {
     public GameStateManager consequences { get; private set; }
     public readonly string text;
-    public Stats statsModification { get; private set; }
+    public Statistics StatisticsModification { get; private set; }
 
 
-    public Action(string text, HashSet<GameState> consequences, Stats statsModification)
+    public Action(string text, HashSet<GameState> consequences, Statistics statisticsModification)
     {
         this.text = text;
         this.consequences = new GameStateManager(consequences);
         consequences.Remove(null);
-        this.statsModification = statsModification;
+        this.StatisticsModification = statisticsModification;
     }
 
     public void Perform()

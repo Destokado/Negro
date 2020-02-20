@@ -26,18 +26,18 @@ public static class EventFactory
         string text = eventInTextFormat[1];
         string location = eventInTextFormat[2];
         HashSet<GameState> requirements = GameStateFactory.BuildGameStates(eventInTextFormat[3]);
-        Stats statsProbabilityIncrement = new Stats(ConvertToInt(eventInTextFormat[4], -1), ConvertToInt(eventInTextFormat[5], -1), ConvertToInt(eventInTextFormat[6], -1));
+        Statistics statisticsProbabilityIncrement = new Statistics(ConvertToInt(eventInTextFormat[4], -1), ConvertToInt(eventInTextFormat[5], -1), ConvertToInt(eventInTextFormat[6], -1));
         
         List<Action> actions = new List<Action>(); 
         for (int a = 0; a < 4; a++)
         {
             string actionText = eventInTextFormat[7 + a * 5];
             HashSet<GameState> actionConsequences = GameStateFactory.BuildGameStates(eventInTextFormat[8 + a * 5]);
-            Stats actionStatsModifications = new Stats(ConvertToInt(eventInTextFormat[9 + a * 5]),
+            Statistics actionStatisticsModifications = new Statistics(ConvertToInt(eventInTextFormat[9 + a * 5]),
                 ConvertToInt(eventInTextFormat[10 + a * 5]), ConvertToInt(eventInTextFormat[11 + a * 5]));
-            actions.Add(new Action(actionText, actionConsequences, actionStatsModifications));
+            actions.Add(new Action(actionText, actionConsequences, actionStatisticsModifications));
         }
-        Event er =  new Event(id, text, location, requirements, statsProbabilityIncrement, actions);
+        Event er =  new Event(id, text, location, requirements, statisticsProbabilityIncrement, actions);
         return er;
     }
 

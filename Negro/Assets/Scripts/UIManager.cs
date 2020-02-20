@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image eventBackground;
     [SerializeField] private TextMeshProUGUI eventText;
     [SerializeField] private ImageOpacityAnimation blackPanel;
+    
+    [SerializeField] private VideoController videoController;
 
     private void Start()
     {
@@ -21,6 +23,8 @@ public class UIManager : MonoBehaviour
     }
 
     private Event currentEvent = null;
+    [SerializeField] private int thresholdToShowEffectVideos;
+
     public void DrawEvent(Event ev)
     {
         currentEvent = ev;
@@ -43,8 +47,39 @@ public class UIManager : MonoBehaviour
         blackPanel.SetOpacityTo(0f, 1f); // Fade to non opacity
     }
     
-    public void ShowConsequencesOf(Stats statsModification, Stats resultGameStats)
+    public void ShowConsequencesOf(Statistics statisticsModification, Statistics resultGameStatistics)
     {
-        // TODO
+        Statistic.Type? maxStat = null; // -1 = none, 0 = health, 1 = sanity, 2 = socialStatus
+        int difMaxStat = thresholdToShowEffectVideos;
+        
+        if (Mathf.Abs(statisticsModification.health.value) >= difMaxStat)
+        {
+            difMaxStat = Mathf.Abs(statisticsModification.health.value);
+            maxStat = Statistic.Type.Health;
+        }
+        
+        if (Mathf.Abs(statisticsModification.sanity.value) >= difMaxStat)
+        {
+            difMaxStat = Mathf.Abs(statisticsModification.sanity.value);
+            maxStat = Statistic.Type.Sanity;
+        }
+        
+        if (Mathf.Abs(statisticsModification.socialStatus.value) >= difMaxStat)
+        {
+            difMaxStat = Mathf.Abs(statisticsModification.socialStatus.value);
+            maxStat = Statistic.Type.SocialStatus;
+        }
+        
+        switch (maxStat)
+        {
+            case Statistic.Type.Health:
+                videoController.ShowVideoFor(resultGameStatistics.health); break;
+            case Statistic.Type.Sanity:
+                videoController.ShowVideoFor(resultGameStatistics.sanity); break;
+            case Statistic.Type.SocialStatus:
+                videoController.ShowVideoFor(resultGameStatistics.socialStatus); break;
+        }
+        
+        
     }
 }

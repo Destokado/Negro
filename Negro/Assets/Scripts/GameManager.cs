@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UIManager UiManager;
     private EventsManager eventsManager;
     private GameStateManager gameStateManager;
-    private Stats stats;
+    private Statistics currentGameStatistics;
 
 
 
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     {
         eventsManager = new EventsManager(EventFactory.BuildEvents(eventsCsv.downloadedFileName));
         gameStateManager = new GameStateManager(new HashSet<GameState>());
-        stats = new Stats(100,100,0);
+        currentGameStatistics = new Statistics(100,100,0);
         
         GameLoop();
     }
@@ -62,9 +62,9 @@ public class GameManager : MonoBehaviour
     {
         gameStateManager.Campute(action.consequences);
         Debug.Log("The current Game State is: " + gameStateManager.ToString());
-        stats.Compute(action.statsModification);
-        Debug.Log("The new stats for the game are: " + stats.ToString());
-        UiManager.ShowConsequencesOf(action.statsModification, stats);
+        currentGameStatistics.Compute(action.StatisticsModification);
+        Debug.Log("The new stats for the game are: " + currentGameStatistics.ToString());
+        UiManager.ShowConsequencesOf(action.StatisticsModification, currentGameStatistics);
         GameLoop();
     }
 
