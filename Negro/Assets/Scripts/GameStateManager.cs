@@ -15,7 +15,7 @@ public class GameStateManager
 
     
     
-    public void Campute(GameStateManager newConsequences)
+    public void Compute(GameStateManager newConsequences)
     {
         List<GameState> gsToAdd = new List<GameState>();
         List<GameState> gsToRemove = new List<GameState>();

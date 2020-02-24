@@ -29,9 +29,10 @@ public class ImageOpacityAnimation : MonoBehaviour
     private void Update()
     {
         image.raycastTarget = Math.Abs(image.color.a) > 0.05f;
-        
+
         if (Math.Abs(objectiveVal - image.color.a) < 0.001f)
             return;
+            
         
         Color currentColor = image.color;
         image.color = new Color(currentColor.r, currentColor.g, currentColor.b, GetValueTroughAnimCurve(originalVal, objectiveVal, currentAnimationElapsedTime, animationDuration, animationCurve));

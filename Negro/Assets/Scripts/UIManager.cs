@@ -8,8 +8,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     private Action chosenAction;
-    [Range(0f, 5f)]
-    [SerializeField] private float fadeDuration = 1f;
+    public const float fadeDuration = 1f;
     [SerializeField] private  ActionButton [] actionButtons;
     [SerializeField] private Image eventBackground;
     [SerializeField] private TextMeshProUGUI eventText;
@@ -17,37 +16,29 @@ public class UIManager : MonoBehaviour
     
     [SerializeField] private VideoController videoController;
 
-    private void Start()
-    {
-        blackPanel.SetOpacityTo(1f, 0); // Fade to full opaque
-    }
-
-    private Event currentEvent = null;
+    //private Event currentEvent = null;
     [SerializeField] private int thresholdToShowEffectVideos;
 
     public void DrawEvent(Event ev)
     {
-        currentEvent = ev;
-        blackPanel.SetOpacityTo(1f, fadeDuration); // Fade to full opaque
-        Invoke(nameof(DrawCurrentEvent), fadeDuration); // Change the event after the fade to full opaque ends
-    }
-    
-    private void DrawCurrentEvent()
-    {
         for (int i = 0; i < actionButtons.Length; i++)
         {
-            actionButtons[i].gameObject.SetActive(currentEvent.actions[i].CanActionBeShownInGame());
-            actionButtons[i].SetUp(currentEvent.actions[i]);
+            actionButtons[i].gameObject.SetActive(ev.actions[i].CanActionBeShownInGame());
+            actionButtons[i].SetUp(ev.actions[i]);
         }
         
-        eventBackground.sprite = Resources.Load<Sprite>(currentEvent.art);
-        eventText.text = currentEvent.text;
+        eventBackground.sprite = Resources.Load<Sprite>(ev.art);
+        eventText.text = ev.text;
         
-        
-        blackPanel.SetOpacityTo(0f, 1f); // Fade to non opacity
+        SetBlackScreenTo(false); // Change the event after the fade to full opaque ends
+    }    
+
+    public void SetBlackScreenTo(bool opaque, float fadeDuration = UIManager.fadeDuration)
+    {
+        blackPanel.SetOpacityTo(opaque? 1f : 0f, fadeDuration); // Fade to full opaque
     }
     
-    public void ShowConsequencesOf(Statistics statisticsModification, Statistics resultGameStatistics)
+    public float ShowConsequencesOf(Statistics statisticsModification, Statistics resultGameStatistics)
     {
         Statistic.Type? maxStat = null; // -1 = none, 0 = health, 1 = sanity, 2 = socialStatus
         int difMaxStat = thresholdToShowEffectVideos;
@@ -73,13 +64,16 @@ public class UIManager : MonoBehaviour
         switch (maxStat)
         {
             case Statistic.Type.Health:
-                videoController.ShowVideoFor(resultGameStatistics.health); break;
+                return videoController.ShowVideoFor(resultGameStatistics.health); 
             case Statistic.Type.Sanity:
-                videoController.ShowVideoFor(resultGameStatistics.sanity); break;
+                return videoController.ShowVideoFor(resultGameStatistics.sanity); 
             case Statistic.Type.SocialStatus:
-                videoController.ShowVideoFor(resultGameStatistics.socialStatus); break;
+                return videoController.ShowVideoFor(resultGameStatistics.socialStatus); 
+            case null:
+                return 0f;
         }
-        
-        
+
+
+        return 0f;
     }
 }

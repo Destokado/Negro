@@ -376,7 +376,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa5d9270783c6a4eb2d218651c54043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeDuration: 1
   actionButtons:
   - {fileID: 2342554461642105644}
   - {fileID: 2668527757359982555}
@@ -400,7 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventsCsv: {fileID: 11400000, guid: 46387ce3d58b41d4187c52cdcf1afd69, type: 2}
-  UiManager: {fileID: 2342554461817127707}
+  uiManager: {fileID: 2342554461817127707}
 --- !u!1 &2342554462081826909
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,7 +721,7 @@ VideoPlayer:
   m_EnabledAudioTracks: 
   m_DirectAudioMutes: 
   m_ControlledAudioTrackCount: 0
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_SkipOnDrop: 1
   m_Looping: 0
   m_WaitForFirstFrame: 1
@@ -739,9 +738,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ba0ee8d944b626438fedd0785448298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthVideos: []
-  sanityVideos: []
-  socialStatusVideos: []
+  healthVideos:
+  - {fileID: 32900000, guid: f58276adbe3f2a14daa90e378223bfa9, type: 3}
+  - {fileID: 32900000, guid: 9ed5faee67fccc04982dada182d028d7, type: 3}
+  - {fileID: 32900000, guid: 5584b3a6d2c5cb54c8bf4053b7ae8d65, type: 3}
+  - {fileID: 32900000, guid: 1be46c0ca7e65584faa09e0b4f4db0f7, type: 3}
+  sanityVideos:
+  - {fileID: 32900000, guid: 186afff5ab5e4e74bacb7137ef8808a1, type: 3}
+  - {fileID: 32900000, guid: 9ed9142d99f48c94ba90ac646917a369, type: 3}
+  - {fileID: 32900000, guid: f8de034d5393d624ab805f1a49d4d741, type: 3}
+  socialStatusVideos:
+  - {fileID: 32900000, guid: 62b4e493f3bfbd2448fbaf134e868893, type: 3}
+  - {fileID: 32900000, guid: b7abb4a6988756c4fa1abe203fb69a1e, type: 3}
 --- !u!1001 &2080381946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -888,7 +896,7 @@ PrefabInstance:
     - target: {fileID: 1254705245245528068, guid: e904101e399aa674d9a9e1334b4a073e,
         type: 3}
       propertyPath: m_fontSize
-      value: 27.35
+      value: 50.75
       objectReference: {fileID: 0}
     - target: {fileID: 9162923209332276318, guid: e904101e399aa674d9a9e1334b4a073e,
         type: 3}

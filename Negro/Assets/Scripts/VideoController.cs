@@ -21,10 +21,39 @@ public class VideoController : MonoBehaviour
         videoPlayer = GetComponent<VideoPlayer>();
     }
 
-    public void ShowVideoFor(Statistic statistic)
+    public float ShowVideoFor(Statistic statistic)
     {
-        Debug.Log("Showing video for stat " + Enum.GetName(typeof(Statistic.Type), statistic.type));
-        
-        throw new NotImplementedException();
+        int videoNumber = -1;
+        switch (statistic.type)
+        {
+            case Statistic.Type.Health:
+                videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, healthVideos.Length-1, statistic.value/100f));
+                Debug.Log("Showing video number " + videoNumber + " for stat " + Enum.GetName(typeof(Statistic.Type), statistic.type));
+                return PlayVideo(healthVideos[videoNumber]);
+            case Statistic.Type.Sanity:
+                videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, sanityVideos.Length-1, statistic.value/100f));
+                Debug.Log("Showing video number " + videoNumber + " for stat " + Enum.GetName(typeof(Statistic.Type), statistic.type));
+                return PlayVideo(sanityVideos[videoNumber]);
+            case Statistic.Type.SocialStatus:
+                videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, socialStatusVideos.Length-1, statistic.value/100f));
+                Debug.Log("Showing video number " + videoNumber + " for stat " + Enum.GetName(typeof(Statistic.Type), statistic.type));
+                return PlayVideo(socialStatusVideos[videoNumber]);
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+
+    private float PlayVideo(VideoClip videoClip)
+    {
+        rawImage.color = new Color(rawImage.color.r, rawImage.color.g, rawImage.color.b, 1f);
+        videoPlayer.clip = videoClip;
+        videoPlayer.Play();
+        Invoke(nameof(HideRawImage), Convert.ToSingle(videoClip.length));
+        return Convert.ToSingle(videoClip.length);
+    }
+
+    private void HideRawImage()
+    {
+        rawImage.color = new Color(rawImage.color.r, rawImage.color.g, rawImage.color.b, 0f);
     }
 }

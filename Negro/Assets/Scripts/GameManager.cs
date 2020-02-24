@@ -7,11 +7,11 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private CsvOnlineSource eventsCsv;
     
-    [SerializeField] private UIManager UiManager;
+    [SerializeField] private UIManager uiManager;
     private EventsManager eventsManager;
     private GameStateManager gameStateManager;
     private Statistics currentGameStatistics;
-
+    private float delayBeforeGameplayStarts = 0.5f;
 
 
     public static GameManager Instance;
@@ -26,11 +26,13 @@ public class GameManager : MonoBehaviour
     
     private void Start()
     {
+        uiManager.SetBlackScreenTo(true, 0f);
+        
         eventsManager = new EventsManager(EventFactory.BuildEvents(eventsCsv.downloadedFileName));
         gameStateManager = new GameStateManager(new HashSet<GameState>());
         currentGameStatistics = new Statistics(100,100,0);
         
-        GameLoop();
+        Invoke(nameof(GameLoop), delayBeforeGameplayStarts);
     }
 
     
@@ -51,20 +53,26 @@ public class GameManager : MonoBehaviour
             gameStateManager.RemoveEventFromListOfForcedEvents(currentEvent);
         
         Debug.Log("Current event: " + currentEvent.ToString());
-        UiManager.DrawEvent(currentEvent);
+        uiManager.DrawEvent(currentEvent);
         Debug.Log("-------------------------------------------\n");
     }
 
-    
-    
-    
+
     public void ApplyActionToGame(Action action)
     {
-        gameStateManager.Campute(action.consequences);
+        StartCoroutine(CoroutineApplyActionToGame(action));
+    }
+
+    private IEnumerator CoroutineApplyActionToGame(Action action)
+    {
+        uiManager.SetBlackScreenTo(true);
+        yield return new WaitForSeconds(UIManager.fadeDuration);
+        gameStateManager.Compute(action.consequences);
         Debug.Log("The current Game State is: " + gameStateManager.ToString());
         currentGameStatistics.Compute(action.StatisticsModification);
         Debug.Log("The new stats for the game are: " + currentGameStatistics.ToString());
-        UiManager.ShowConsequencesOf(action.StatisticsModification, currentGameStatistics);
+        float delayForNextEvent = uiManager.ShowConsequencesOf(action.StatisticsModification, currentGameStatistics);
+        yield return new WaitForSeconds(delayForNextEvent);
         GameLoop();
     }
 
