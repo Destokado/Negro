@@ -1490,7 +1490,7 @@ PrefabInstance:
     - target: {fileID: 1254705245245528068, guid: e904101e399aa674d9a9e1334b4a073e,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1254705245245528068, guid: e904101e399aa674d9a9e1334b4a073e,
         type: 3}
@@ -1500,17 +1500,17 @@ PrefabInstance:
     - target: {fileID: 1254705245245528068, guid: e904101e399aa674d9a9e1334b4a073e,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1254705245245528068, guid: e904101e399aa674d9a9e1334b4a073e,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1254705245245528068, guid: e904101e399aa674d9a9e1334b4a073e,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1254705245245528068, guid: e904101e399aa674d9a9e1334b4a073e,
         type: 3}
@@ -1966,27 +1966,27 @@ PrefabInstance:
     - target: {fileID: 1254705245245528068, guid: e904101e399aa674d9a9e1334b4a073e,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1254705245245528068, guid: e904101e399aa674d9a9e1334b4a073e,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1254705245245528068, guid: e904101e399aa674d9a9e1334b4a073e,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1254705245245528068, guid: e904101e399aa674d9a9e1334b4a073e,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1254705245245528068, guid: e904101e399aa674d9a9e1334b4a073e,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1254705245245528068, guid: e904101e399aa674d9a9e1334b4a073e,
         type: 3}

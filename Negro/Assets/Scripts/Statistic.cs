@@ -23,6 +23,6 @@ public class Statistic
     public Statistic(Type type, int value)
     {
         this.type = type;
-        this.val = val;
+        this.val = value;
     }
 }
