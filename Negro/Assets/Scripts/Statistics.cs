@@ -8,7 +8,7 @@ public class Statistics
     public Statistic sanity { get; private set; }
     public Statistic socialStatus { get; private set; }
 
-    public Statistics(int health = 0, int sanity = 0, int socialStatus = 0)
+    public Statistics(int health, int sanity, int socialStatus)
     {
         this.health = new Statistic(Statistic.Type.Health, health);
         this.sanity = new Statistic(Statistic.Type.Sanity, sanity);

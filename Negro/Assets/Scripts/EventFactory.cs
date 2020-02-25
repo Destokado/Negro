@@ -22,7 +22,7 @@ public static class EventFactory
     
     public static Event BuildEvent(string[] eventInTextFormat)
     {
-        int id = ConvertToInt(eventInTextFormat[0]);
+        string id = eventInTextFormat[0];
         string text = eventInTextFormat[1];
         string location = eventInTextFormat[2];
         HashSet<GameState> requirements = GameStateFactory.BuildGameStates(eventInTextFormat[3]);

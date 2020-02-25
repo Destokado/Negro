@@ -29,8 +29,11 @@ public class GameManager : MonoBehaviour
         uiManager.SetBlackScreenTo(true, 0f);
         
         eventsManager = new EventsManager(EventFactory.BuildEvents(eventsCsv.downloadedFileName));
+        eventsManager.CheckEvents();
+        eventsManager.CheckActions();
+        
         gameStateManager = new GameStateManager(new HashSet<GameState>());
-        currentGameStatistics = new Statistics(100,100,0);
+        currentGameStatistics = new Statistics(100,100,5);
         
         Invoke(nameof(GameLoop), delayBeforeGameplayStarts);
     }

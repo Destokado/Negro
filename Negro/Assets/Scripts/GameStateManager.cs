@@ -48,7 +48,7 @@ public class GameStateManager
     {
         if (@event.requirements.ExistsForcedGameStateFor(@event.id.ToString()))
         {
-            if (!gameStates.Contains(new GameState(@event.id.ToString(), GameState.Type.ForceEvent)))
+            if (!gameStates.Contains(new GameState(@event.id.ToString().ToUpper(), GameState.Type.ForceEvent)))
                 return false;
             else
                 return true;
