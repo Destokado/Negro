@@ -27,15 +27,15 @@ public class VideoController : MonoBehaviour
         switch (statistic.type)
         {
             case Statistic.Type.Health:
-                videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, healthVideos.Length-1, statistic.value/100f));
+                videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, healthVideos.Length-1, statistic.val/100f));
                 Debug.Log("Showing video number " + videoNumber + " for stat " + Enum.GetName(typeof(Statistic.Type), statistic.type));
                 return PlayVideo(healthVideos[videoNumber]);
             case Statistic.Type.Sanity:
-                videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, sanityVideos.Length-1, statistic.value/100f));
+                videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, sanityVideos.Length-1, statistic.val/100f));
                 Debug.Log("Showing video number " + videoNumber + " for stat " + Enum.GetName(typeof(Statistic.Type), statistic.type));
                 return PlayVideo(sanityVideos[videoNumber]);
             case Statistic.Type.SocialStatus:
-                videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, socialStatusVideos.Length-1, statistic.value/100f));
+                videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, socialStatusVideos.Length-1, statistic.val/100f));
                 Debug.Log("Showing video number " + videoNumber + " for stat " + Enum.GetName(typeof(Statistic.Type), statistic.type));
                 return PlayVideo(socialStatusVideos[videoNumber]);
             default:
@@ -55,5 +55,12 @@ public class VideoController : MonoBehaviour
     private void HideRawImage()
     {
         rawImage.color = new Color(rawImage.color.r, rawImage.color.g, rawImage.color.b, 0f);
+        CancelInvoke(nameof(HideRawImage));
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            HideRawImage();
     }
 }

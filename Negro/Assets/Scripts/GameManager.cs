@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         
-        currentEvent = eventsManager.GetEventFor(gameStateManager);
+        currentEvent = eventsManager.GetEventFor(currentGameStatistics, gameStateManager);
         if (currentEvent == null)
             Debug.LogWarning("Not event found for the current Game State.");
         else

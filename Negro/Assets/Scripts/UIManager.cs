@@ -9,9 +9,15 @@ public class UIManager : MonoBehaviour
 {
     private Action chosenAction;
     public const float fadeDuration = 1f;
+    
     [SerializeField] private  ActionButton [] actionButtons;
     [SerializeField] private Image eventBackground;
     [SerializeField] private TextMeshProUGUI eventText;
+    
+    [SerializeField] private  ActionButton consequenceAction;
+    [SerializeField] private Image consequenceBackgroundAndRoot;
+    [SerializeField] private TextMeshProUGUI consequenceText;
+    
     [SerializeField] private ImageOpacityAnimation blackPanel;
     
     [SerializeField] private VideoController videoController;
@@ -21,14 +27,28 @@ public class UIManager : MonoBehaviour
 
     public void DrawEvent(Event ev)
     {
-        for (int i = 0; i < actionButtons.Length; i++)
+        if (ev.validActions == 1)
         {
-            actionButtons[i].gameObject.SetActive(ev.actions[i].CanActionBeShownInGame());
-            actionButtons[i].SetUp(ev.actions[i]);
+            consequenceBackgroundAndRoot.gameObject.SetActive(true);
+            consequenceAction.SetUp(ev.GetFirstValidAction());
+            consequenceBackgroundAndRoot.sprite = Resources.Load<Sprite>(ev.art);
+            consequenceText.text = ev.text;
+        }
+        else
+        {
+            consequenceBackgroundAndRoot.gameObject.SetActive(false);
+            for (int i = 0; i < actionButtons.Length; i++)
+            {
+                actionButtons[i].gameObject.SetActive(ev.actions[i].IsValid());
+                actionButtons[i].SetUp(ev.actions[i]);
+            }
+            eventBackground.sprite = Resources.Load<Sprite>(ev.art);
+            eventText.text = ev.text;
         }
         
-        eventBackground.sprite = Resources.Load<Sprite>(ev.art);
-        eventText.text = ev.text;
+        
+        
+
         
         SetBlackScreenTo(false); // Change the event after the fade to full opaque ends
     }    
@@ -43,21 +63,21 @@ public class UIManager : MonoBehaviour
         Statistic.Type? maxStat = null; // -1 = none, 0 = health, 1 = sanity, 2 = socialStatus
         int difMaxStat = thresholdToShowEffectVideos;
         
-        if (Mathf.Abs(statisticsModification.health.value) >= difMaxStat)
+        if (Mathf.Abs(statisticsModification.health.val) >= difMaxStat)
         {
-            difMaxStat = Mathf.Abs(statisticsModification.health.value);
+            difMaxStat = Mathf.Abs(statisticsModification.health.val);
             maxStat = Statistic.Type.Health;
         }
         
-        if (Mathf.Abs(statisticsModification.sanity.value) >= difMaxStat)
+        if (Mathf.Abs(statisticsModification.sanity.val) >= difMaxStat)
         {
-            difMaxStat = Mathf.Abs(statisticsModification.sanity.value);
+            difMaxStat = Mathf.Abs(statisticsModification.sanity.val);
             maxStat = Statistic.Type.Sanity;
         }
         
-        if (Mathf.Abs(statisticsModification.socialStatus.value) >= difMaxStat)
+        if (Mathf.Abs(statisticsModification.socialStatus.val) >= difMaxStat)
         {
-            difMaxStat = Mathf.Abs(statisticsModification.socialStatus.value);
+            difMaxStat = Mathf.Abs(statisticsModification.socialStatus.val);
             maxStat = Statistic.Type.SocialStatus;
         }
         

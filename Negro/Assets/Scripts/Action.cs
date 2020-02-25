@@ -22,8 +22,18 @@ public class Action
         GameManager.Instance.ApplyActionToGame(this);
     }
 
-    public bool CanActionBeShownInGame()
+    private bool CanActionBeShownInGame()
     {
         return ! ( string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text) ) ;
+    }
+
+    public bool IsValid()
+    {
+        return CanActionBeShownInGame();
+    }
+
+    public override string ToString()
+    {
+        return text;
     }
 }

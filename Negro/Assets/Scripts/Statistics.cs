@@ -17,14 +17,14 @@ public class Statistics
 
     public void Compute(Statistics modifications)
     {
-        health.value += modifications.health.value;
-        sanity.value += modifications.sanity.value;
-        socialStatus.value += modifications.socialStatus.value;
+        health.val += modifications.health.val;
+        sanity.val += modifications.sanity.val;
+        socialStatus.val += modifications.socialStatus.val;
     }
 
     public override string ToString()
     {
-         return "Health: "+health+" | Sanity: "+sanity+" | Status: "+socialStatus;
+         return "Health: "+health.val+" | Sanity: "+sanity.val+" | Status: "+socialStatus.val;
         
     }
 }
