@@ -69,25 +69,47 @@ public class EventsManager
     public void CheckActions()
     {
         List<string> errorReport = new List<string>();
+        List<string> warningReport = new List<string>();
         
         foreach (Event ev in events)
-        foreach (Action action in ev.actions)
-        foreach (GameState consequence in action.consequences.gameStates)
-            if (consequence.type == GameState.Type.ForceEvent)
-                if (!ExistEventWithId(consequence.name))
-                    errorReport.Add("The consequence '" + consequence +  "' in the action '" + action.text + "' in the event '" + ev.id + "' is trying to force a non-existing event.");
-        
+            foreach (Action action in ev.actions)
+                foreach (GameState consequence in action.consequences.gameStates)
+                    if (consequence.type == GameState.Type.ForceEvent)
+                    {
+                        if (!ExistEventWithId(consequence.name))
+                            errorReport.Add("The consequence '" + consequence +  "' in the action '" + action.text + "' in the event '" + ev.id + "' is trying to force a non-existing event.");
+                    }
+                    else
+                    {
+                        if (!ExistsEventWithRequirement(consequence))
+                            warningReport.Add("The consequence '" + consequence +  "' in the action '" + action.text + "' in the event '" + ev.id + "' is never used in any event as requirement.");
+                    }
+
         foreach (string rep in errorReport)
             Debug.LogError(rep);
+        
+        foreach (string rep in warningReport)
+            Debug.LogWarning(rep);
     }
-
+    
     private bool ExistEventWithId(string id)
     {
         foreach (Event ev in events)
-            if (string.Compare(ev.id.ToString().ToUpper(), id, StringComparison.InvariantCultureIgnoreCase) == 0)
+            if (string.Compare(ev.id.ToUpper(), id, StringComparison.InvariantCultureIgnoreCase) == 0)
                 return true;
-            
-        
+
+        return false;
+    }
+    
+    private bool ExistsEventWithRequirement(GameState consequence)
+    {
+        foreach (Event ev in events)
+            foreach (GameState requirement in ev.requirements.gameStates)
+            {
+                if (requirement.Equals(consequence))
+                    return true;
+            }
+
         return false;
     }
 }
