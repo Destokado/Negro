@@ -13,16 +13,11 @@ public class Statistic
     }
 
     public readonly Type type;
-    public int val
-    {
-        get { return _value; }
-        set { _value = Mathf.Clamp(value, 0, 100); }
-    }
-    private int _value;
+    public int value;
 
     public Statistic(Type type, int value)
     {
         this.type = type;
-        this.val = value;
+        this.value = value;
     }
 }

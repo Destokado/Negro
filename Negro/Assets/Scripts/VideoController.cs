@@ -27,16 +27,16 @@ public class VideoController : MonoBehaviour
         switch (statistic.type)
         {
             case Statistic.Type.Health:
-                videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, healthVideos.Length-1, statistic.val/100f));
-                Debug.Log("Showing video number " + videoNumber + " for stat " + Enum.GetName(typeof(Statistic.Type), statistic.type));
+                videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, healthVideos.Length-1, statistic.value/100f));
+                Debug.Log("Showing video number " + videoNumber + "/"+ (healthVideos.Length-1) + " for stat " + Enum.GetName(typeof(Statistic.Type), statistic.type));
                 return PlayVideo(healthVideos[videoNumber]);
             case Statistic.Type.Sanity:
-                videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, sanityVideos.Length-1, statistic.val/100f));
-                Debug.Log("Showing video number " + videoNumber + " for stat " + Enum.GetName(typeof(Statistic.Type), statistic.type));
+                videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, sanityVideos.Length-1, statistic.value/100f));
+                Debug.Log("Showing video number " + videoNumber + "/"+ (sanityVideos.Length-1) + " for stat " + Enum.GetName(typeof(Statistic.Type), statistic.type));
                 return PlayVideo(sanityVideos[videoNumber]);
             case Statistic.Type.SocialStatus:
-                videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, socialStatusVideos.Length-1, statistic.val/100f));
-                Debug.Log("Showing video number " + videoNumber + " for stat " + Enum.GetName(typeof(Statistic.Type), statistic.type));
+                videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, socialStatusVideos.Length-1, statistic.value/100f));
+                Debug.Log("Showing video number " + videoNumber + "/"+ (socialStatusVideos.Length-1) + " for stat " + Enum.GetName(typeof(Statistic.Type), statistic.type));
                 return PlayVideo(socialStatusVideos[videoNumber]);
             default:
                 throw new ArgumentOutOfRangeException();

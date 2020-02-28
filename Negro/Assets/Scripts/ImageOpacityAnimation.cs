@@ -5,21 +5,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
-public class ImageOpacityAnimation : MonoBehaviour
+public class ImageOpacityAnimation : OpacityAnimation
 {
-    [SerializeField] private AnimationCurve animationCurve;
     private Image image;
-    private float objectiveVal;
-    private float originalVal;
-    private float animationDuration;
-    private float currentAnimationElapsedTime;
-    private void Start()
-    {
-        image = GetComponent<Image>();
-    }
 
-    public void SetOpacityTo(float value, float time)
+    public override void SetOpacityTo(float value, float time)
     {
+        if (image == null)
+        {
+            image = GetComponent<Image>();
+            objectiveVal = image.color.a;
+        }
+        
         originalVal = image.color.a;
         objectiveVal = value;
         animationDuration = time;
@@ -28,21 +25,19 @@ public class ImageOpacityAnimation : MonoBehaviour
 
     private void Update()
     {
-        image.raycastTarget = Math.Abs(image.color.a) > 0.05f;
+        if (image == null)
+            return;
+
+        image.raycastTarget = Mathf.Abs(image.color.a) > 0.05f;
 
         if (Math.Abs(objectiveVal - image.color.a) < 0.001f)
             return;
-            
-        
+
         Color currentColor = image.color;
         image.color = new Color(currentColor.r, currentColor.g, currentColor.b, GetValueTroughAnimCurve(originalVal, objectiveVal, currentAnimationElapsedTime, animationDuration, animationCurve));
         
         currentAnimationElapsedTime += Time.deltaTime;
     }
 
-    public static float GetValueTroughAnimCurve(float origin, float objective, float timeElapsed, float animationDuration, AnimationCurve animationCurve)
-    {
-        float progress = animationDuration > 0 ? animationCurve.Evaluate(timeElapsed / animationDuration) : 1;
-        return Mathf.Lerp(origin, objective, progress);
-    }
+
 }

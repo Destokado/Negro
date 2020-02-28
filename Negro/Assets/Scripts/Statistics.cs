@@ -17,14 +17,14 @@ public class Statistics
 
     public void Compute(Statistics modifications)
     {
-        health.val += modifications.health.val;
-        sanity.val += modifications.sanity.val;
-        socialStatus.val += modifications.socialStatus.val;
+        health.value = Mathf.Clamp(health.value+modifications.health.value, 0, 100);
+        sanity.value = Mathf.Clamp(sanity.value+modifications.sanity.value, 0, 100);
+        socialStatus.value = Mathf.Clamp(socialStatus.value+modifications.socialStatus.value, 0, 100);
     }
 
     public override string ToString()
     {
-         return "Health: "+health.val+" | Sanity: "+sanity.val+" | Status: "+socialStatus.val;
+         return "Health: "+health.value+" | Sanity: "+sanity.value+" | Status: "+socialStatus.value;
         
     }
 }

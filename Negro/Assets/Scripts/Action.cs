@@ -6,7 +6,7 @@ public class Action
 {
     public GameStateManager consequences { get; private set; }
     public readonly string text;
-    public Statistics StatisticsModification { get; private set; }
+    public Statistics statisticsModification { get; private set; }
 
 
     public Action(string text, HashSet<GameState> consequences, Statistics statisticsModification)
@@ -14,7 +14,7 @@ public class Action
         this.text = text;
         this.consequences = new GameStateManager(consequences);
         consequences.Remove(null);
-        this.StatisticsModification = statisticsModification;
+        this.statisticsModification = statisticsModification;
     }
 
     public void Perform()

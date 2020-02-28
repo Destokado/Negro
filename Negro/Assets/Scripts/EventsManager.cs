@@ -49,6 +49,9 @@ public class EventsManager
                 if (!AnyActionHasAsConsequence(requirement))
                     report.Add("The event '" + ev.id + "' has '" + requirement.name + "' as requirement, but no action modifies it as consequence.");
             }
+
+            if (ev.validActions <= 0)
+                report.Add("The event '" + ev.id + "' does not have any action attached.");
         }
 
         foreach (string rep in report)

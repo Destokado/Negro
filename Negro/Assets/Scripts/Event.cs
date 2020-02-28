@@ -10,7 +10,7 @@ public class Event
     public readonly string text;
     public readonly string art;
     public readonly GameStateManager requirements;
-    public readonly Statistics statisticsProbabilityIncrement; // TODO: Implement when choosing events randomly
+    public readonly Statistics statisticsProbabilityIncrement;
     public readonly List<Action> actions;
     public int validActions {  get { return actions.Count(action => action.IsValid()); } }
 
@@ -65,9 +65,9 @@ public class Event
     {
         int probability = 100;
 
-        probability -= Mathf.Abs(statisticsProbabilityIncrement.health.val - currentStatistics.health.val)/3;
-        probability -= Mathf.Abs(statisticsProbabilityIncrement.sanity.val - currentStatistics.sanity.val)/3;
-        probability -= Mathf.Abs(statisticsProbabilityIncrement.socialStatus.val - currentStatistics.socialStatus.val)/3;
+        probability -= Mathf.Abs(statisticsProbabilityIncrement.health.value - currentStatistics.health.value)/3;
+        probability -= Mathf.Abs(statisticsProbabilityIncrement.sanity.value - currentStatistics.sanity.value)/3;
+        probability -= Mathf.Abs(statisticsProbabilityIncrement.socialStatus.value - currentStatistics.socialStatus.value)/3;
         
         //Debug.Log("Probability of event '" + id + "' is " + probability );
         

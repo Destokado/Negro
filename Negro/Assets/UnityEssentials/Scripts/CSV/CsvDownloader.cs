@@ -108,6 +108,7 @@ class CsvDownloader
     }
 
     [MenuItem("Unity Essentials/CSV Manager/Download all")]
+    [MenuItem("Negro/Update events")]
     public static bool DownloadAllCsvOnlineSources()
     {
         //Search all csvOnlineSource

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,25 +14,31 @@ public class GameManager : MonoBehaviour
     private GameStateManager gameStateManager;
     private Statistics currentGameStatistics;
     private float delayBeforeGameplayStarts = 0.5f;
+    public bool pause {
+        get { return _pause; }
+        set { _pause = value; uiManager.ShowPauseMenu(_pause);}
+    }
 
+    private bool _pause { get; set; }
 
     public static GameManager Instance;
+
     private void Awake()
     {
         if (Instance != null)
-            Debug.LogError("More than one GameObject has been created: " + Instance.name + " and " + gameObject.name, this);
+            Debug.LogError("More than one GameObject has been created: " + Instance.name + " and " + gameObject.name,
+                this);
         else
             Instance = this;
     }
 
-    
     private void Start()
     {
         uiManager.SetBlackScreenTo(true, 0f);
         
         eventsManager = new EventsManager(EventFactory.BuildEvents(eventsCsv.downloadedFileName));
-        eventsManager.CheckEvents();
-        eventsManager.CheckActions();
+        //eventsManager.CheckEvents();
+        //eventsManager.CheckActions();
         
         gameStateManager = new GameStateManager(new HashSet<GameState>());
         currentGameStatistics = new Statistics(100,100,5);
@@ -38,8 +46,20 @@ public class GameManager : MonoBehaviour
         Invoke(nameof(GameLoop), delayBeforeGameplayStarts);
     }
 
-    
-    
+    [MenuItem("Negro/Check events")]
+    public static void CheckEventsCsv()
+    {
+        EventsManager eventsManager = new EventsManager(EventFactory.BuildEvents("Events"));
+        eventsManager.CheckEvents();
+        eventsManager.CheckActions();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            pause = !pause;
+    }
+
     private Event currentEvent;
     private void GameLoop()
     {
@@ -63,6 +83,9 @@ public class GameManager : MonoBehaviour
 
     public void ApplyActionToGame(Action action)
     {
+        
+        Debug.Log("Performing action : '" + action.ToString() + "' - Effects -> " + action.statisticsModification.ToString() + "\n Consequences -> " + action.consequences.ToString());
+        Debug.Log("· · · · · · · · · · · · · · · · · · · · · ·\n");
         StartCoroutine(CoroutineApplyActionToGame(action));
     }
 
@@ -70,24 +93,45 @@ public class GameManager : MonoBehaviour
     {
         uiManager.SetBlackScreenTo(true);
         yield return new WaitForSeconds(UIManager.fadeDuration);
+        
         gameStateManager.Compute(action.consequences);
-        Debug.Log("The current Game State is: " + gameStateManager.ToString());
-        currentGameStatistics.Compute(action.StatisticsModification);
-        Debug.Log("The new stats for the game are: " + currentGameStatistics.ToString());
-        float delayForNextEvent = uiManager.ShowConsequencesOf(action.StatisticsModification, currentGameStatistics);
+        currentGameStatistics.Compute(action.statisticsModification);
+        
+        Debug.Log(" # Current stats: " + currentGameStatistics.ToString() + "\n");
+        Debug.Log(" # Current game state: " + gameStateManager.ToString() + "\n");
+        
+        float delayForNextEvent = uiManager.ShowConsequencesOf(action.statisticsModification, currentGameStatistics);
         yield return new WaitForSeconds(delayForNextEvent);
         GameLoop();
     }
 
     private void EndGame()
     {
-        // TODO
-        throw new NotImplementedException();
+        uiManager.ShowEndScreen("Has muerto.");
     }
 
     private bool IsEndGame()
     {
-        // TODO
-        return false;
+        return currentGameStatistics.health.value <= 0;
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+    }
+
+    public void LoadMainScene()
+    {
+        SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 }
