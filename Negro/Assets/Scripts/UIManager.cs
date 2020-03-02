@@ -49,10 +49,6 @@ public class UIManager : MonoBehaviour
             eventText.text = ev.text;
         }
         
-        
-        
-
-        
         SetBlackScreenTo(false); // Change the event after the fade to full opaque ends
     }    
 
@@ -61,7 +57,7 @@ public class UIManager : MonoBehaviour
         blackPanel.SetOpacityTo(opaque? 1f : 0f, fadeDuration); // Fade to full opaque
     }
     
-    public float ShowConsequencesOf(Statistics statisticsModification, Statistics resultGameStatistics)
+    public float ShowVideoConsequencesOf(Statistics statisticsModification, Statistics resultGameStatistics)
     {
         Statistic.Type? maxStat = null; // -1 = none, 0 = health, 1 = sanity, 2 = socialStatus
         int difMaxStat = thresholdToShowEffectVideos;

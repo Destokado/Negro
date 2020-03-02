@@ -61,6 +61,9 @@ public class VideoController : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
+        {
             HideRawImage();
+            GameManager.Instance.ForceGameLoop();
+        }
     }
 }

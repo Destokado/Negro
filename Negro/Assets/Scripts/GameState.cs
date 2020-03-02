@@ -17,7 +17,7 @@ public class GameState
 
     public GameState(string name, Type type)
     {
-        this.name = name;
+        this.name = name.ToUpper();
         this.type = type;
     }
 
@@ -39,7 +39,7 @@ public class GameState
 
     protected bool Equals(GameState other)
     {
-        return name == other.name;
+        return name.ToUpper() == other.name.ToUpper();
     }
 
     public override int GetHashCode()

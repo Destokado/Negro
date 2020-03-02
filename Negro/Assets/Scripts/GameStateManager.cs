@@ -44,11 +44,11 @@ public class GameStateManager
     
     
     
-    public bool AreGameStatesCorrectFor(Event @event)
+    public bool AreGameStatesCorrectFor(Event ev)
     {
-        if (@event.requirements.ExistsForcedGameStateFor(@event.id.ToString()))
+        if (ev.requirements.ExistsForcedGameState(ev.id))
         {
-            if (!gameStates.Contains(new GameState(@event.id.ToString().ToUpper(), GameState.Type.ForceEvent)))
+            if (!gameStates.Contains(new GameState(ev.id.ToUpper(), GameState.Type.ForceEvent)))
                 return false;
             else
                 return true;
@@ -59,14 +59,14 @@ public class GameStateManager
             {
                 if (gs.type == GameState.Type.ForceEvent)
                 {
-                    if (String.Compare(@event.id.ToString(), gs.name, StringComparison.OrdinalIgnoreCase) == 0)
+                    if (String.Compare(ev.id, gs.name, StringComparison.OrdinalIgnoreCase) == 0)
                         return true;
                     else
                         return false;
                 }
             }
         
-            foreach (GameState requirement in @event.requirements.gameStates)
+            foreach (GameState requirement in ev.requirements.gameStates)
             {
                 if (requirement.type == GameState.Type.Exists)
                 {
@@ -84,9 +84,9 @@ public class GameStateManager
         return true;
     }
 
-    private bool ExistsForcedGameStateFor(string gameStateName)
+    private bool ExistsForcedGameState(string gameStateName)
     {
-        GameState searchingGs = new GameState(gameStateName, GameState.Type.ForceEvent);
+        GameState searchingGs = new GameState(gameStateName.ToUpper(), GameState.Type.ForceEvent);
         foreach (GameState gs in gameStates)
         {
             if (gs.Equals(searchingGs))
@@ -120,6 +120,6 @@ public class GameStateManager
 
     public void RemoveEventFromListOfForcedEvents(Event @event)
     {
-        gameStates.Remove(new GameState(@event.id.ToString(), GameState.Type.ForceEvent));
+        gameStates.Remove(new GameState(@event.id.ToUpper(), GameState.Type.ForceEvent));
     }
 }
