@@ -15,5 +15,5 @@ public static class StringExtensions
     {
         return string.IsNullOrEmpty(str) || string.IsNullOrWhiteSpace(str);
     }
-
+    
 }

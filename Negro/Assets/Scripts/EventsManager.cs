@@ -40,27 +40,31 @@ public class EventsManager
 
     public void CheckEvents()
     {
-        List<string> report = new List<string>();
+        List<string> errorReport = new List<string>();
+        List<string> warningReport = new List<string>();
         
         foreach (Event ev in events)
         {
             foreach (GameState requirement in ev.requirements.gameStates)
             {
                 if (!AnyActionHasAsConsequence(requirement))
-                    report.Add("The event '" + ev.id + "' has '" + requirement.name + "' as requirement, but no action modifies it as consequence.");
+                    errorReport.Add("The event '" + ev.id + "' has '" + requirement.name + "' as requirement, but no action modifies it as consequence.");
             }
 
             if (ev.validActions <= 0)
-                report.Add("The event '" + ev.id + "' does not have any action attached.");
+                errorReport.Add("The event '" + ev.id + "' does not have any action attached.");
 
             if (string.Compare(ev.art, "Z-NONE", StringComparison.InvariantCultureIgnoreCase) == 0 || ev.art.IsNullEmptyOrWhiteSpace())
-                report.Add("The event '" + ev.id + "' does not have any art assigned.");
+                warningReport.Add("The event '" + ev.id + "' does not have any art assigned.");
             else if (Resources.Load<Sprite>(ev.art) == null)
-                report.Add("The art '"+ ev.art + "' in the event '" + ev.id + "' was not found.");
+                errorReport.Add("The art '"+ ev.art + "' in the event '" + ev.id + "' was not found.");
         }
 
-        foreach (string rep in report)
+        foreach (string rep in errorReport)
             Debug.LogError(rep);
+        
+        foreach (string rep in warningReport)
+            Debug.LogWarning(rep);
     }
 
     private bool AnyActionHasAsConsequence(GameState requirement)
