@@ -44,7 +44,9 @@ public class GameManager : MonoBehaviour
         Invoke(nameof(GameLoop), delayBeforeGameplayStarts);
     }
 
+#if UNITY_EDITOR
     [MenuItem("Negro/Check events")]
+#endif
     public static void CheckEventsCsv()
     {
         EventsManager eventsManager = new EventsManager(EventFactory.BuildEvents("Events"));
@@ -100,8 +102,6 @@ public class GameManager : MonoBehaviour
         
         float delayForNextEvent = uiManager.ShowVideoConsequencesOf(action.statisticsModification, currentGameStatistics);
         Invoke(nameof(GameLoop), delayForNextEvent);
-        //yield return new WaitForSeconds(delayForNextEvent);
-        //GameLoop();
     }
 
     public void ForceGameLoop()

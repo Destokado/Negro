@@ -8,7 +8,8 @@ public class Event
 {
     public readonly string id;
     public readonly string text;
-    public readonly string art;
+    public string art { get { if (_art.IsNullEmptyOrWhiteSpace()) return "Z-NONE"; else return _art; } }
+    private readonly string _art;
     public readonly GameStateManager requirements;
     public readonly Statistics statisticsProbabilityIncrement;
     public readonly List<Action> actions;
@@ -18,7 +19,7 @@ public class Event
     {
         this.id = id;
         this.text = text;
-        this.art = art;
+        this._art = art;
         this.requirements = new GameStateManager(requirements);
         requirements.Remove(null);
         this.statisticsProbabilityIncrement = statisticsProbabilityIncrement;

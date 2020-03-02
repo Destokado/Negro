@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour
             consequenceBackgroundAndRoot.gameObject.SetActive(true);
             consequenceAction.SetUp(ev.GetFirstValidAction());
             consequenceBackgroundAndRoot.sprite = Resources.Load<Sprite>(ev.art);
-            consequenceText.text = ev.text;
+            consequenceText.text = ev.text.EnsureEndsWithDot();
         }
         else
         {
@@ -46,7 +46,7 @@ public class UIManager : MonoBehaviour
                 actionButtons[i].SetUp(ev.actions[i]);
             }
             eventBackground.sprite = Resources.Load<Sprite>(ev.art);
-            eventText.text = ev.text;
+            eventText.text = ev.text.EnsureEndsWithDot();
         }
         
         SetBlackScreenTo(false); // Change the event after the fade to full opaque ends
@@ -83,11 +83,11 @@ public class UIManager : MonoBehaviour
         switch (maxStat)
         {
             case Statistic.Type.Health:
-                return videoController.ShowVideoFor(resultGameStatistics.health); 
+                return videoController.ShowVideoFor(resultGameStatistics.health, resultGameStatistics.socialStatus.value > 50); 
             case Statistic.Type.Sanity:
-                return videoController.ShowVideoFor(resultGameStatistics.sanity); 
+                return videoController.ShowVideoFor(resultGameStatistics.sanity, resultGameStatistics.socialStatus.value > 50); 
             case Statistic.Type.SocialStatus:
-                return videoController.ShowVideoFor(resultGameStatistics.socialStatus); 
+                return videoController.ShowVideoFor(resultGameStatistics.socialStatus, resultGameStatistics.socialStatus.value > 50); 
             case null:
                 return 0f;
         }

@@ -115,7 +115,10 @@ public class GameStateManager
         if (!string.IsNullOrEmpty(currentGameState))
             finalReport += "Game states: " + currentGameState;
 
-        return finalReport;
+        if (string.IsNullOrEmpty(finalReport))
+            return "none.";
+        else
+            return finalReport;
     }
 
     public void RemoveEventFromListOfForcedEvents(Event @event)

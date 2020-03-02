@@ -107,6 +107,7 @@ class CsvDownloader
         return true;
     }
 
+#if UNITY_EDITOR
     [MenuItem("Unity Essentials/CSV Manager/Download all")]
     [MenuItem("Negro/Update events")]
     public static bool DownloadAllCsvOnlineSources()
@@ -130,7 +131,9 @@ class CsvDownloader
         Debug.Log("All csv files from online sources have been downloaded.");
         return true;
     }
+#endif
     
+#if UNITY_EDITOR
     [MenuItem("Unity Essentials/CSV Manager/Delete all")]
     public static void DeleteAllCsvFromOnlineSourcesInResources()
     {
@@ -145,5 +148,5 @@ class CsvDownloader
 
         Debug.Log("All csv files from online sources have been deleted.");
     }
-    
+#endif
 }

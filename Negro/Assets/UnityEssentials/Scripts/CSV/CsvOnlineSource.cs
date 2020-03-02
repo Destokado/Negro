@@ -67,7 +67,7 @@ public class CsvOnlineSource : ScriptableObject
     }
     public static IEqualityComparer<CsvOnlineSource> localizationUrlComparer { get; } = new LocalizationUrlEqualityComparer();
     
-    
+#if UNITY_EDITOR
     public static CsvOnlineSource[] GetAllInAssets()
     {
         string[] guids = AssetDatabase.FindAssets("t:" + typeof(CsvOnlineSource).Name);
@@ -80,5 +80,5 @@ public class CsvOnlineSource : ScriptableObject
 
         return localizationFiles;
     }
-    
+#endif
 }

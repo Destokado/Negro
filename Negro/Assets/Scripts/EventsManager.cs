@@ -52,6 +52,11 @@ public class EventsManager
 
             if (ev.validActions <= 0)
                 report.Add("The event '" + ev.id + "' does not have any action attached.");
+
+            if (string.Compare(ev.art, "Z-NONE", StringComparison.InvariantCultureIgnoreCase) == 0 || ev.art.IsNullEmptyOrWhiteSpace())
+                report.Add("The event '" + ev.id + "' does not have any art assigned.");
+            else if (Resources.Load<Sprite>(ev.art) == null)
+                report.Add("The art '"+ ev.art + "' in the event '" + ev.id + "' was not found.");
         }
 
         foreach (string rep in report)
@@ -84,7 +89,7 @@ public class EventsManager
                     }
                     else
                     {
-                        if (!ExistsEventWithRequirement(consequence))
+                        if (!ExistsEventWithRequirementOf(consequence))
                             warningReport.Add("The consequence '" + consequence +  "' in the action '" + action.text + "' in the event '" + ev.id + "' is never used in any event as requirement.");
                     }
 
@@ -104,14 +109,14 @@ public class EventsManager
         return false;
     }
     
-    private bool ExistsEventWithRequirement(GameState consequence)
+    private bool ExistsEventWithRequirementOf(GameState consequence)
     {
         foreach (Event ev in events)
             foreach (GameState requirement in ev.requirements.gameStates)
-            {
                 if (requirement.Equals(consequence))
-                    return true;
-            }
+                    if ((consequence.type != GameState.Type.ForceEvent && requirement.type != GameState.Type.ForceEvent) || (consequence.type == GameState.Type.ForceEvent && requirement.type == GameState.Type.ForceEvent))
+                        return true;
+            
 
         return false;
     }

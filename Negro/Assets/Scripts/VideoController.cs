@@ -9,8 +9,10 @@ using UnityEngine.Video;
 [RequireComponent(typeof(RawImage))]
 public class VideoController : MonoBehaviour
 {
-    [SerializeField] private VideoClip[] healthVideos;
-    [SerializeField] private VideoClip[] sanityVideos;
+    [SerializeField] private VideoClip[] healthVideosHighSocialStatus;
+    [SerializeField] private VideoClip[] healthVideosLowSocialStatus;
+    [SerializeField] private VideoClip[] sanityVideosHighSocialStatus;
+    [SerializeField] private VideoClip[] sanityVideosLowSocialStatus;
     [SerializeField] private VideoClip[] socialStatusVideos;
     private VideoPlayer videoPlayer;
     private RawImage rawImage;
@@ -21,26 +23,47 @@ public class VideoController : MonoBehaviour
         videoPlayer = GetComponent<VideoPlayer>();
     }
 
-    public float ShowVideoFor(Statistic statistic)
+    public float ShowVideoFor(Statistic statistic, bool highSocialStatus)
     {
         int videoNumber = -1;
-        switch (statistic.type)
+
+        if (statistic.type == Statistic.Type.SocialStatus)
         {
-            case Statistic.Type.Health:
-                videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, healthVideos.Length-1, statistic.value/100f));
-                Debug.Log("Showing video number " + videoNumber + "/"+ (healthVideos.Length-1) + " for stat " + Enum.GetName(typeof(Statistic.Type), statistic.type));
-                return PlayVideo(healthVideos[videoNumber]);
-            case Statistic.Type.Sanity:
-                videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, sanityVideos.Length-1, statistic.value/100f));
-                Debug.Log("Showing video number " + videoNumber + "/"+ (sanityVideos.Length-1) + " for stat " + Enum.GetName(typeof(Statistic.Type), statistic.type));
-                return PlayVideo(sanityVideos[videoNumber]);
-            case Statistic.Type.SocialStatus:
-                videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, socialStatusVideos.Length-1, statistic.value/100f));
-                Debug.Log("Showing video number " + videoNumber + "/"+ (socialStatusVideos.Length-1) + " for stat " + Enum.GetName(typeof(Statistic.Type), statistic.type));
-                return PlayVideo(socialStatusVideos[videoNumber]);
-            default:
-                throw new ArgumentOutOfRangeException();
+            videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, socialStatusVideos.Length-1, statistic.value/100f));
+            Debug.Log("Showing video number " + videoNumber + "/"+ (socialStatusVideos.Length-1) + " for stat " + Enum.GetName(typeof(Statistic.Type), statistic.type));
+            return PlayVideo(socialStatusVideos[videoNumber]);
         }
+
+        if (!highSocialStatus)
+        {
+            switch (statistic.type)
+            {
+                case Statistic.Type.Health:
+                    videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, healthVideosLowSocialStatus.Length-1, statistic.value/100f));
+                    Debug.Log("Showing video number for low social status " + videoNumber + "/"+ (healthVideosLowSocialStatus.Length-1) + " for stat " + Enum.GetName(typeof(Statistic.Type), statistic.type));
+                    return PlayVideo(healthVideosLowSocialStatus[videoNumber]);
+                case Statistic.Type.Sanity:
+                    videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, sanityVideosLowSocialStatus.Length-1, statistic.value/100f));
+                    Debug.Log("Showing video number for low social status " + videoNumber + "/"+ (sanityVideosLowSocialStatus.Length-1) + " for stat " + Enum.GetName(typeof(Statistic.Type), statistic.type));
+                    return PlayVideo(sanityVideosLowSocialStatus[videoNumber]);
+            }
+        }
+        else
+        {
+            switch (statistic.type)
+            {
+                case Statistic.Type.Health:
+                    videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, healthVideosHighSocialStatus.Length-1, statistic.value/100f));
+                    Debug.Log("Showing video number for high social status " + videoNumber + "/"+ (healthVideosHighSocialStatus.Length-1) + " for stat " + Enum.GetName(typeof(Statistic.Type), statistic.type));
+                    return PlayVideo(healthVideosHighSocialStatus[videoNumber]);
+                case Statistic.Type.Sanity:
+                    videoNumber = Mathf.RoundToInt(Mathf.Lerp(0, sanityVideosHighSocialStatus.Length-1, statistic.value/100f));
+                    Debug.Log("Showing video number for high social status " + videoNumber + "/"+ (sanityVideosHighSocialStatus.Length-1) + " for stat " + Enum.GetName(typeof(Statistic.Type), statistic.type));
+                    return PlayVideo(sanityVideosHighSocialStatus[videoNumber]);
+            }
+        }
+
+        throw new Exception("The video that should be shown could not be identified. Statistic: " + statistic + ". Parameter 'highSocialStatus' = " + highSocialStatus);
     }
 
     private float PlayVideo(VideoClip videoClip)
