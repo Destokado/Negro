@@ -28,7 +28,7 @@ public class Event
 
     public override string ToString()
     {
-        return "ID: '" + id + "'. Text: '" + text + "'\n Art: '" + art + "'. Requirements: " + requirements.ToString() + "\nActions: " + actions[0].ToString() + ", " + actions[1].ToString() + ", " + actions[2].ToString() + ", " + actions[3].ToString();
+        return "ID: '" + id + "'.    Text: '" + text + "'\n    Art: '" + art + "'.    Requirements: " + requirements.ToString() + "\nActions: " + actions[0].ToString() + ", " + actions[1].ToString() + ", " + actions[2].ToString() + ", " + actions[3].ToString();
     }
 
     public override bool Equals(object obj)

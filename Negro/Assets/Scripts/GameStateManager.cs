@@ -104,19 +104,23 @@ public class GameStateManager
         
         foreach (GameState gs in gameStates)
             if (gs.type == GameState.Type.ForceEvent)
-                forcedEvents += gs.ToString() + ", ";
+                forcedEvents += gs + ", ";
             else
-                currentGameState += gs.ToString() + ", ";
-
-
+                currentGameState += gs + ", ";
+        
         string finalReport = "";
         if (!string.IsNullOrEmpty(forcedEvents))
-            finalReport += "Forced events: " + forcedEvents + ". ";
+            finalReport += "Forced events: " + forcedEvents.Substring(0, forcedEvents.Length-2) + ".";
         if (!string.IsNullOrEmpty(currentGameState))
-            finalReport += "Game states: " + currentGameState;
+        {
+            if (!string.IsNullOrEmpty(finalReport)) 
+                finalReport += " | ";
+            finalReport += "Game states: " + currentGameState.Substring(0, currentGameState.Length-2) + ".";
+        }
+            
 
         if (string.IsNullOrEmpty(finalReport))
-            return "none.";
+            return "None.";
         else
             return finalReport;
     }

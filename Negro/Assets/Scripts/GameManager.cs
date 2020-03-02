@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
         else
             gameStateManager.RemoveEventFromListOfForcedEvents(currentEvent);
         
-        Debug.Log("Current event: " + currentEvent);
+        Debug.Log("> Current event: " + currentEvent);
         uiManager.DrawEvent(currentEvent);
         Debug.Log("-------------------------------------------\n");
     }
@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
     public void ApplyActionToGame(Action action)
     {
         
-        Debug.Log("Performing action : '" + action + "' - Effects -> " + action.statisticsModification + "\n Consequences -> " + action.consequences);
+        Debug.Log("Performing action : '" + action + "'    Effects -> " + action.statisticsModification + "\n Consequences -> " + action.consequences);
         Debug.Log("· · · · · · · · · · · · · · · · · · · · · ·\n");
         StartCoroutine(CoroutineApplyActionToGame(action));
     }
@@ -97,8 +97,8 @@ public class GameManager : MonoBehaviour
         gameStateManager.Compute(action.consequences);
         currentGameStatistics.Compute(action.statisticsModification);
         
-        Debug.Log(" # Current stats: " + currentGameStatistics + "\n");
-        Debug.Log(" # Current game state: " + gameStateManager + "\n");
+        Debug.Log(" # Current stats:\n    " + currentGameStatistics);
+        Debug.Log(" # Current game state:\n    " + gameStateManager);
         
         float delayForNextEvent = uiManager.ShowVideoConsequencesOf(action.statisticsModification, currentGameStatistics);
         Invoke(nameof(GameLoop), delayForNextEvent);
