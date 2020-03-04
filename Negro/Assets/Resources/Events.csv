@@ -37,7 +37,7 @@ heridaNocheCompañeros,"Mientras trabajabas en el campo de noche, te hieres una 
 castigoCompañero,"Con el látigo más grande de la casa, azotas duramente a tu compañero, ocasionandole duras lesiones, el amo está orgulloso de ti, tus compañero no...",protagonista_pegar_esclavo,_castigoCompañero,,,,Aceptar,,,,,,,,,,,,,,,,,,,
 novioAlcohol,Sule te ofrece alcohol de su alijo secreto,,_novioAlcohol,,,,Rechazar,_novioHablar,,,,Aceptar,_novioHablar,,,,Chivarse,"_muerteEsclavoPorTuCulpa, novioMuerto",,,,,,,,
 novioHablar,"Disfrutais de una gran velada, tanto Sule como tu lo pasais en grande",,_novioHablar,,,,Friltear,_novioReceptivo,,,,Seguir conversando,_novioHablar,,,,Despedirse,novioEstrellas,,,,,,,,
-felicitaciónAmo,El amo esta complacido por tu fidelidad,,_felicitacionAmo,,,,Aceptar,,,,15,,,,,,,,,,,,,,,
+felicitaciónAmo,El amo esta complacido por tu fidelidad,,_felicitaciónAmo,,,,Aceptar,,,,15,,,,,,,,,,,,,,,
 novioReceptivo,"Suleman se muestra receptivo, todo va  como la seda",,_novioReceptivo,,,,Seguir hablando,_novioHablar,,,,Despedirse,_novioAgarre,,,,Poner su mano en tu muslo,,,,,,,,,
 novioAgarre,Suleman no deja que te vayas y te agarra el brazo,,_novioAgarre,,,,Pedir que te suelte,_violación,,,,Soltarte por la fuerza,_violación,,,,Besarle,_novioBeso,,,,,,,,
 violación,Eres violada sin que puedas hacer nada al respeto.,,_violación,,,,Aceptar,"violada, embarazo, novioMuerto",,-25,,,,,,,,,,,,,,,,
