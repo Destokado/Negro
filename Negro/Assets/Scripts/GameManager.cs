@@ -96,6 +96,8 @@ public class GameManager : MonoBehaviour
     private IEnumerator CoroutineApplyActionToGame(Action action)
     {
         uiManager.SetBlackScreenTo(true);
+        if (!action.statisticsModification.AreAllStatsValuesEqualToZero())
+            uiManager.ShowStatsModificationFeedback(action.statisticsModification);
         yield return new WaitForSeconds(UIManager.fadeDuration);
         
         gameStateManager.Compute(action.consequences);
@@ -105,7 +107,9 @@ public class GameManager : MonoBehaviour
         Debug.Log(" # Current game state:\n    " + gameStateManager);
         
         float delayForNextEvent = uiManager.ShowVideoConsequencesOf(action.statisticsModification, currentGameStatistics);
+        if (Math.Abs(delayForNextEvent) < 0.2f && !action.statisticsModification.AreAllStatsValuesEqualToZero()) delayForNextEvent = 1f;
         Invoke(nameof(GameLoop), delayForNextEvent);
+        StartCoroutine(uiManager.HideStatsModificationFeedback(delayForNextEvent));
     }
 
     public void ForceGameLoop()

@@ -25,6 +25,10 @@ public class Statistics
     public override string ToString()
     {
          return "Health: "+health.value+" | Sanity: "+sanity.value+" | Status: "+socialStatus.value;
-        
+    }
+
+    public bool AreAllStatsValuesEqualToZero()
+    {
+        return (health.value == sanity.value && sanity.value == socialStatus.value && socialStatus.value == 0);
     }
 }

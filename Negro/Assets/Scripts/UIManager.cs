@@ -22,9 +22,13 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private PauseMenu pauseMenu;
     [SerializeField] private EndScreen endScreen;
+
+    [SerializeField] private StatsFeedback statsFeedback;
     
     public void DrawEvent(Event ev)
     {
+        eventText.text = ev.text.EnsureEndsWithDot();
+        
         for (int i = 0; i < actionButtons.Length; i++)
         {
             actionButtons[i].gameObject.SetActive(ev.actions[i].IsValid());
@@ -39,6 +43,11 @@ public class UIManager : MonoBehaviour
     public void SetBlackScreenTo(bool opaque, float fadeDuration = UIManager.fadeDuration)
     {
         blackPanel.SetOpacityTo(opaque? 1f : 0f, fadeDuration); // Fade to full opaque
+    }
+
+    public void ShowStatsModificationFeedback(Statistics statisticsModification)
+    {
+        statsFeedback.ShowStatsModificationFeedback(statisticsModification);
     }
     
     public float ShowVideoConsequencesOf(Statistics statisticsModification, Statistics resultGameStatistics)
@@ -89,5 +98,9 @@ public class UIManager : MonoBehaviour
         endScreen.Show(endGameMessage);
     }
 
-
+    public IEnumerator HideStatsModificationFeedback(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        statsFeedback.HideFeedback();
+    }
 }
