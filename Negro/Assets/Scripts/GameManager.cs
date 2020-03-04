@@ -73,7 +73,11 @@ public class GameManager : MonoBehaviour
         if (currentEvent == null)
             Debug.LogWarning("Not event found for the current Game State.");
         else
+        {
             gameStateManager.RemoveEventFromListOfForcedEvents(currentEvent);
+            currentEvent.used = true;
+        }
+            
         
         Debug.Log("> Current event: " + currentEvent);
         uiManager.DrawEvent(currentEvent);

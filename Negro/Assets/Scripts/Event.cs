@@ -13,6 +13,7 @@ public class Event
     public readonly GameStateManager requirements;
     public readonly Statistics statisticsProbabilityIncrement;
     public readonly List<Action> actions;
+    public bool used = false;
     public int validActions {  get { return actions.Count(action => action.IsValid()); } }
 
     public Event(string id, string text, string art, HashSet<GameState> requirements, Statistics statisticsProbabilityIncrement, List<Action> actions)
@@ -69,8 +70,9 @@ public class Event
         probability -= Mathf.Abs(statisticsProbabilityIncrement.health.value - currentStatistics.health.value)/3;
         probability -= Mathf.Abs(statisticsProbabilityIncrement.sanity.value - currentStatistics.sanity.value)/3;
         probability -= Mathf.Abs(statisticsProbabilityIncrement.socialStatus.value - currentStatistics.socialStatus.value)/3;
-        
-        //Debug.Log("Probability of event '" + id + "' is " + probability );
+
+        if (used)
+            probability = probability/10;
         
         return probability;
     }
