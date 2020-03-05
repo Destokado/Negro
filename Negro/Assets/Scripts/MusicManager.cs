@@ -36,6 +36,12 @@ public class MusicManager : MonoBehaviour
         {
             PlayAllSongs();
         }
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+            audioSource.volume -= 0.1f;
+        
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+            audioSource.volume += 0.1f;
     }
 
     private void PlayAllSongs()
