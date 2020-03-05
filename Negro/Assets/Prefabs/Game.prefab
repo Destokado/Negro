@@ -3044,13 +3044,13 @@ MonoBehaviour:
   socialStatusIcon: {fileID: 8554590355838281102}
   fadeDuration: 0.5
   thingsToAnimate:
-  - {fileID: 4427366708652127757}
   - {fileID: 5289058051519103148}
   - {fileID: 4358845262946589279}
   - {fileID: 4694652077705871047}
   - {fileID: 1621919377966464350}
   - {fileID: 449488349753898254}
   - {fileID: 7780558142689617642}
+  background: {fileID: 4427366708652127757}
 --- !u!114 &4427366708652127757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5742,7 +5742,7 @@ PrefabInstance:
     - target: {fileID: 1254705245245528068, guid: e904101e399aa674d9a9e1334b4a073e,
         type: 3}
       propertyPath: m_fontSize
-      value: 39.65
+      value: 39.7
       objectReference: {fileID: 0}
     - target: {fileID: 1254705245245528068, guid: e904101e399aa674d9a9e1334b4a073e,
         type: 3}
