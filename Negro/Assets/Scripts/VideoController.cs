@@ -2,11 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Video;
 
 [RequireComponent(typeof(VideoPlayer))]
-[RequireComponent(typeof(RawImage))]
+[RequireComponent(typeof(RawImageOpacityAnimation))]
 public class VideoController : MonoBehaviour
 {
     [SerializeField] private VideoClip[] healthVideosHighSocialStatus;
@@ -15,11 +14,11 @@ public class VideoController : MonoBehaviour
     [SerializeField] private VideoClip[] sanityVideosLowSocialStatus;
     [SerializeField] private VideoClip[] socialStatusVideos;
     private VideoPlayer videoPlayer;
-    private RawImage rawImage;
+    private RawImageOpacityAnimation rawImage;
 
     private void Start()
     {
-        rawImage = GetComponent<RawImage>();
+        rawImage = GetComponent<RawImageOpacityAnimation>();
         videoPlayer = GetComponent<VideoPlayer>();
     }
 
@@ -68,7 +67,7 @@ public class VideoController : MonoBehaviour
 
     private float PlayVideo(VideoClip videoClip)
     {
-        rawImage.color = new Color(rawImage.color.r, rawImage.color.g, rawImage.color.b, 1f);
+        rawImage.SetOpacityTo(1f, 0.5f);
         videoPlayer.clip = videoClip;
         videoPlayer.Play();
         Invoke(nameof(HideRawImage), Convert.ToSingle(videoClip.length));
@@ -77,7 +76,7 @@ public class VideoController : MonoBehaviour
 
     private void HideRawImage()
     {
-        rawImage.color = new Color(rawImage.color.r, rawImage.color.g, rawImage.color.b, 0f);
+        rawImage.SetOpacityTo(0f, 0.5f);
         CancelInvoke(nameof(HideRawImage));
     }
 

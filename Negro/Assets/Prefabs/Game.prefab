@@ -2632,6 +2632,7 @@ GameObject:
   - component: {fileID: 1770992270427515435}
   - component: {fileID: 7526493888776131274}
   - component: {fileID: 6383998524673805226}
+  - component: {fileID: 4798926866029494439}
   m_Layer: 5
   m_Name: Video
   m_TagString: Untagged
@@ -2756,6 +2757,42 @@ MonoBehaviour:
   socialStatusVideos:
   - {fileID: 32900000, guid: 7440a0f111b0eae48ac52fd5e9f4804e, type: 3}
   - {fileID: 32900000, guid: a2879971569ad1a40be129027acd388a, type: 3}
+--- !u!114 &4798926866029494439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8028116645594143340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1834a5c511d6a66428dc79f40ba30487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8038176184703161306
 GameObject:
   m_ObjectHideFlags: 0
@@ -3234,7 +3271,7 @@ PrefabInstance:
     - target: {fileID: 1254705245245528068, guid: e904101e399aa674d9a9e1334b4a073e,
         type: 3}
       propertyPath: m_fontSize
-      value: 72
+      value: 71.45
       objectReference: {fileID: 0}
     - target: {fileID: 9162923209332276318, guid: e904101e399aa674d9a9e1334b4a073e,
         type: 3}
@@ -5868,7 +5905,7 @@ PrefabInstance:
     - target: {fileID: 1254705245245528068, guid: e904101e399aa674d9a9e1334b4a073e,
         type: 3}
       propertyPath: m_fontSize
-      value: 39.7
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1254705245245528068, guid: e904101e399aa674d9a9e1334b4a073e,
         type: 3}
