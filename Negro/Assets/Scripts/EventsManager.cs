@@ -54,9 +54,10 @@ public class EventsManager
             if (ev.validActions <= 0)
                 errorReport.Add("The event '" + ev.id + "' does not have any action attached.");
 
-            if (string.Compare(ev.art, "Z-NONE", StringComparison.InvariantCultureIgnoreCase) == 0 || ev.art.IsNullEmptyOrWhiteSpace())
+            // Check if the art is not assigned (determined as not necessary)
+            /*if (string.Compare(ev.art, "Z-NONE", StringComparison.InvariantCultureIgnoreCase) == 0 || ev.art.IsNullEmptyOrWhiteSpace())
                 warningReport.Add("The event '" + ev.id + "' does not have any art assigned.");
-            else if (Resources.Load<Sprite>(ev.art) == null)
+            else */if (Resources.Load<Sprite>(ev.art) == null)
                 errorReport.Add("The art '"+ ev.art + "' in the event '" + ev.id + "' was not found.");
         }
 

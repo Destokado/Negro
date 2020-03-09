@@ -15,13 +15,13 @@ public class StatsFeedback : MonoBehaviour
 
     [SerializeField] private float fadeDuration = 1f;
     [SerializeField] private OpacityAnimation[] thingsToAnimate;
-    [SerializeField] private OpacityAnimation background;
+    //[SerializeField] private OpacityAnimation background;
 
     private void Start()
     {
         foreach (var thing in thingsToAnimate)
             thing.SetOpacityTo(0f, 0);
-        background.SetOpacityTo(0f,0);
+        //background.SetOpacityTo(0f,0);
     }
 
     public void ShowStatsModificationFeedback(Statistics modification)
@@ -32,7 +32,7 @@ public class StatsFeedback : MonoBehaviour
         
         foreach (var thing in thingsToAnimate)
             thing.SetOpacityTo(1f, fadeDuration);
-        background.SetOpacityTo(0.4f,fadeDuration);
+        //background.SetOpacityTo(0.4f,fadeDuration);
     }
     
     
@@ -40,7 +40,7 @@ public class StatsFeedback : MonoBehaviour
     {
         foreach (var thing in thingsToAnimate)
             thing.SetOpacityTo(0f, fadeDuration);
-        background.SetOpacityTo(0f,fadeDuration);
+        //background.SetOpacityTo(0f,fadeDuration);
     }
 
     private void SetImageToShowFeedbackOf(Image image, int modification)
