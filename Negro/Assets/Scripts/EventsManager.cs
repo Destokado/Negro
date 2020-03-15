@@ -48,7 +48,8 @@ public class EventsManager
             foreach (GameState requirement in ev.requirements.gameStates)
             {
                 if (!AnyActionHasAsConsequence(requirement))
-                    errorReport.Add("The event '" + ev.id + "' has '" + requirement.name + "' as requirement, but no action modifies it as consequence.");
+                    if (String.Compare(requirement.name, "START", StringComparison.InvariantCultureIgnoreCase) != 0)
+                        errorReport.Add("The event '" + ev.id + "' has '" + requirement.name + "' as requirement, but no action modifies it as consequence.");
             }
 
             if (ev.validActions <= 0)

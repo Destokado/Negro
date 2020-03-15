@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2851575616821942712}
   - component: {fileID: 3275729155439754567}
   - component: {fileID: 695436325215929803}
+  - component: {fileID: 7881631381776400674}
   m_Layer: 5
   m_Name: MusicManager
   m_TagString: Untagged
@@ -153,3 +154,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e23e8147e736ce74f80f5f4b786dd476, type: 3}
   - {fileID: 8300000, guid: bc802c86916687743b471f19782f644b, type: 3}
   - {fileID: 8300000, guid: 30403c433c8015642a5227d5c4c91327, type: 3}
+--- !u!114 &7881631381776400674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4801380668882258382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfb6e5de5501fbf4a851b9f08486e834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorTexture: {fileID: 2800000, guid: 8602ecfbe24560a4499b71278bb10edf, type: 3}

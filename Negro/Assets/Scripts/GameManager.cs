@@ -39,6 +39,10 @@ public class GameManager : MonoBehaviour
         eventsManager = new EventsManager(EventFactory.BuildEvents(eventsCsv.downloadedFileName));
 
         gameStateManager = new GameStateManager(new HashSet<GameState>());
+        var startGameStates = new HashSet<GameState>();
+        startGameStates.Add(new GameState("START", GameState.Type.ForceEvent));
+        gameStateManager.Compute(new GameStateManager(startGameStates));
+        
         currentGameStatistics = new Statistics(100,100,5);
         
         Invoke(nameof(GameLoop), delayBeforeGameplayStarts);
